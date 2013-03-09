@@ -14,10 +14,10 @@
     </style>
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.2</h1>
+    <h1>CSS Mini Minifier v0.3</h1>
     <h3>The JavaScript CSS minifier that fits in a tweet!</h3>
     <br>
-    <input value="css=css.replace(/\s+/g, ' ').replace(/\/\*.*?\*\/ *|^ | $|[ ;]*([{};,:!+>~\.!\(\)]) */g, '$1').replace(/\)([^;{}])/g, ') $1')">
+    <input value="css.replace(/\/\*(\s|.)*?\*\/|\s+/g,' ').replace(/^ *| *$|[ ;]*([{};,:!+>~\(\)]) */g,'$1').replace(/\)([^;{}])/g,') $1')">
     <br>
     <br>
     <h3>Try it!</h3>
@@ -425,27 +425,27 @@ table {
     <button id=minify>Minify!</button>
     <br>
     <br>
-    By <a href="http://twitter.com/MaximeEuziere">Maxime Euzière</a>
+    By <a href="http://twitter.com/MaximeEuziere">Maxime EuziÃ¨re</a> for <a href="http://140byt.es">140byt.es</a> (<a href="https://gist.github.com/xem/5059125">see Gist</a>) - <a href="http://github.com/xem/miniMinifier">Fork me on Github</a>
     <script>
       var css = document.getElementById("css");
       var js = document.getElementById("js");
       var minify = document.getElementById("minify");
       minify.onclick = function(){
         var l1=css.value.length;
-        css.value = m(m(css.value));
+        css.value = min(css.value);
         var l2=css.value.length;
         alert("Before: "+l1+"Bytes. After: "+l2+"Bytes. Saved: "+(100-Math.round(l2/l1*100))+"%.")
       };
       
       function min(c){
         return c
-              .replace(/\s+/g, ' ')                                               // replace whitespaces, tabs, line breaks with a space
-              .replace(/\/\*.*?\*\/ *|^ | $|[ ;]*([{};,:!+>~\.!\(\)]) */g, '$1')  // trim comments, trim space(s) around { } ; , : ! + > ~ . ( ), trim ; before } and comments
-              .replace(/\)([^;{}])/g, ') $1');                                    // IE bug: keep a space after )
+              .replace(/\/\*(\s|.)*?\*\/|\s+/g, ' ')               // replace comments, whitespaces, tabs, line breaks with a space
+              .replace(/^ *| *$|[ ;]*([{};,:!+>~\(\)]) */g, '$1')  // trim spaces at the beginning and the end, trim spaces around [{};,:!+>~()] and trim ; before }
+              .replace(/\)([^;{}])/g, ') $1');                     // IE bug: keep a space after ) unless it's followed by [;{}]
       }
       
       // minified:
-      // function min(c){return c.replace(/\s+/g," ").replace(/\/\*.*?\*\/ *|^ | $|[ ;]*([{};,:!+>~\.!\(\)]) */g,"$1").replace(/\)([^;{}])/g,") $1")}
+      // function m(c){return c.replace(/\/\*(\s|.)*?\*\/|\s+/g,' ').replace(/^ *| *$|[ ;]*([{};,:!+>~\(\)]) */g,'$1').replace(/\)([^;{}])/g,') $1')}
     </script>
   </body>
 </html>
