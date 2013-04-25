@@ -49,7 +49,7 @@
       <br>
       - <input type=checkbox id=hex> Minify hexadecimal colors (example: #556677 &rarr; #567)</input>
       <br>
-      - <input type=checkbox id=ie> Old IE compatibility (keep spaces after closing parenthesis, example: "url(bg.jpg) no-repeat")</input>
+      - <input type=checkbox id=ie> Old IE compatibility (keep spaces after some closing parenthesis)</input>
       <br>
       <br>
     </div>
@@ -88,14 +88,14 @@
         
         // Zero
         if(checkboxes[1].checked){
-          code += "          [r](/(\D)0\\./g,'$1.')\n";
-          minicode += "[r](/(\D)0\\./g,'$1.')";
+          code += "          [r](/(\\D)0\\./g,'$1.')\n";
+          minicode += "[r](/(\\D)0\\./g,'$1.')";
         }
         
         // Zero's unit
         if(checkboxes[2].checked){
-          code += "          [r](/(\D)0([a-z%]+)/gi,'$10')\n";
-          minicode += "[r](/(\D)0([a-z%]+)/gi,'$10')";
+          code += "          [r](/(\\D)0([a-z%]+)/gi,'$10')\n";
+          minicode += "[r](/(\\D)0([a-z%]+)/gi,'$10')";
         }
         
         // RGB
