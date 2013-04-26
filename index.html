@@ -16,12 +16,12 @@
       textarea { width: 830px; height: 200px; font: normal 11px monospace; letter-spacing: -1px; border: 1px solid #000; padding: 10px; word-wrap: break-word; }
       button { padding: 5px; }
       div { text-align: left; }
-      pre { height: 150px; font-size: 12px; text-align: left; font-family: monospace; background: #fff; border: 1px solid #000; padding: 10px; }
+      pre { height: 130px; font-size: 12px; text-align: left; font-family: monospace; background: #fff; border: 1px solid #000; padding: 10px; }
     </style>
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.4</h1>
-    <h3>The Insanely Short <span id=bytes title="size of the minifying expression, the surrounding function is not included">(89 bytes)</span> CSS Minifier Written in JavaScript!</h3>
+    <h1>CSS Mini Minifier v0.5</h1>
+    <h3>The Insanely Short <span id=bytes title="size of the minifying expression, the surrounding function is not included">(87 bytes)</span> CSS Minifier Written in JavaScript!</h3>
     <br>
     <br>
     <h4>CSS code:</h4>
@@ -33,7 +33,7 @@
     <h4>Minifier's JS code:</h4>
     <br>
     <pre id=js>css=(function(c,r){
-  return c[r="replace"](/((\/\*[^]*?\*\/)|\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~\(\)-@]) */g,'$1')
+  return c[r='replace'](/((\/\*[^]*?\*\/)|\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~()-@]) */g,'$1')
 })(css)</pre>
     <br>
     <h4>Options</h4>
@@ -41,9 +41,7 @@
     <div>
       - <input type=checkbox checked disabled> Remove unnecessary comments, spaces, tabs, line breaks and semicolons</input>
       <br>
-      - <input type=checkbox id=zero> Remove 0 in decimal numbers between -1 and 1 (example: 0.25 &rarr; .25)</input>
-      <br>
-      - <input type=checkbox id=unit> Remove units after 0 (example: 0px &rarr; 0)</input>
+      - <input type=checkbox id=zero> Remove leading zeros and units after 0 (example: 0.25 &rarr; .25, 0px &rarr; 0)</input>
       <br>
       - <input type=checkbox id=rgb> Convert rgb colors in hexadecimal (example: rgb(10,20,30) &rarr; #0A151F)</input>
       <br>
@@ -72,6 +70,9 @@
       // Iterator
       var i;
       
+      // Code
+      var code, minicode;
+      
       // Handle clicks on checkboxes
       for(i = 0; i < checkboxes.length; i++){
         if(i > 0){
@@ -83,35 +84,29 @@
       function updateMinifier(){
         
         // Minifier code
-        var code = "css=(function(c,r){\n  return c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~\\(\\)-@]) */g,'$1')\n";
-        var minicode = "c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~\\(\\)-@]) */g,'$1')";
+        code = "css=(function(c,r){\n  return c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~()-@]) */g,'$1')\n";
+        minicode = "c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~()-@]) */g,'$1')";
         
         // Zero
         if(checkboxes[1].checked){
-          code += "          [r](/(\\D)0\\./g,'$1.')\n";
-          minicode += "[r](/(\\D)0\\./g,'$1.')";
-        }
-        
-        // Zero's unit
-        if(checkboxes[2].checked){
-          code += "          [r](/(\\D)0([a-z%]+)/gi,'$10')\n";
-          minicode += "[r](/(\\D)0([a-z%]+)/gi,'$10')";
+          code += "          [r](/(\\D)((0)[a-z%]+|0(\\.))/gi,'$1$3$4')\n";
+          minicode += "[r](/(\\D)((0)[a-z%]+|0(\\.))/gi,'$1$3$4')";
         }
         
         // RGB
-        if(checkboxes[3].checked){
-          code += "          [r](/rgb\\((\\d+),(\\d+),(\\d+)\\)/gi,function(h,a,b,c,i,p)\n            {h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2);return h})\n";
-          minicode += "[r](/rgb\\((\\d+),(\\d+),(\\d+)\\)/gi,function(h,a,b,c,i,p){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2);return h})";
+        if(checkboxes[2].checked){
+          code += "          [r](/rgb\\((\\d+),(\\d+),(\\d+)\\)/gi,function(h,a,b,c,i,p)\n            {p='#';h=[a,b,c];for(i in h)p+=(0+parseInt(h[i]).toString(16)).slice(-2);return p})\n";
+          minicode += "[r](/rgb\\((\\d+),(\\d+),(\\d+)\\)/gi,function(h,a,b,c,i,p){p='#';h=[a,b,c];for(i in h)p+=(0+parseInt(h[i]).toString(16)).slice(-2);return p})";
         }
         
         // Hex
-        if(checkboxes[4].checked){
+        if(checkboxes[3].checked){
           code += "          [r](/#[a-f0-9]{6}/gi,function(h,p){p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})\n";
           minicode += "[r](/#[a-f0-9]{6}/gi,function(h,p){p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})";
         }
         
         // IE
-        if(checkboxes[5].checked){
+        if(checkboxes[4].checked){
           code += "          [r](/\\)(?![;{}])/g,') ')\n";
           minicode += "[r](/\\)(?![;{}])/g,') ')";
         }
@@ -130,30 +125,26 @@
         var size = css.length;
         
         css = css.replace(/((\/\*[^]*?\*\/)|\s)+/g,' ')
-                 .replace(/^ | $|[ ;]*([{};,:!+>~\(\)]) */g,'$1')
+                 .replace(/^ | $|[ ;]*([{};,:!+>~()-@]) */g,'$1')
+        
         
         // Zero
         if(checkboxes[1].checked){
-          css = css.replace(/(\D)0\./g,'$1.');
-        }
-        
-        // Zero's unit
-        if(checkboxes[2].checked){
-          css = css.replace(/(\D)0([a-z%]+)/gi,'$10')
+          css = css.replace(/(\D)((0)[a-z%]+|0(\.))/gi,'$1$3$4')
         }
         
         // RGB
-        if(checkboxes[3].checked){
-          css = css.replace(/rgb\((\d+),(\d+),(\d+)\)/gi,function(h,a,b,c,i,p){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2);return h})
+        if(checkboxes[2].checked){
+          css = css.replace(/rgb\((\d+),(\d+),(\d+)\)/gi,function(h,a,b,c,i,p){p='#';h=[a,b,c];for(i in h)p+=(0+parseInt(h[i]).toString(16)).slice(-2);return p})
         }
         
         // Hex
-        if(checkboxes[4].checked){
+        if(checkboxes[3].checked){
           css = css.replace(/#[a-f0-9]{6}/gi,function(h,p){p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})
         }
         
         // IE
-        if(checkboxes[5].checked){
+        if(checkboxes[4].checked){
           css = css.replace(/\)(?![;{}])/g,') ')
         }
         
