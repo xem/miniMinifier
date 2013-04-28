@@ -17,12 +17,12 @@
       textarea { width: 830px; height: 220px; font: normal 11px monospace; letter-spacing: -1px; border: 1px solid #89a; padding: 10px; word-wrap: break-word; }
       button { padding: 5px; }
       div { text-align: left; margin-top: 10px; }
-      pre { height: 130px; font-size: 12px; text-align: left; font-family: monospace; background: #fff; border: 1px solid #89a; padding: 10px; }
+      pre { height: 100px; font-size: 12px; text-align: left; font-family: monospace; background: #fff; border: 1px solid #89a; padding: 10px; }
       textarea, pre { border-radius: 10px; border-right: 3px solid #89a; border-bottom: 3px solid #89a; margin-top: 10px }
     </style>
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.6</h1>
+    <h1>CSS Mini Minifier v0.7</h1>
     <h3>The Insanely Short <span id=bytes title="size of the minifying expression, without the surrounding function">(80 bytes)</span> CSS Minifier Written in JavaScript!</h3>
     <br>
     <h4>CSS code:</h4>
@@ -31,10 +31,10 @@
     <br>
     <br>
     <h4>Minifier's JS code:</h4>
-    <h5>(Call this function with one papameter: a string containing the CSS code)
-    <pre id=js>function(c,r){ 
-  return c[r='replace'](/((\/\*[^]*?\*\/)|\s)+/g,' ')
-          [r](/^ | $|[ ;]*([^\w.# ]) */g,'$1')
+    <h5>(Call this function with one parameter: a string containing the CSS code)
+    <pre id=js>function(c){ 
+  return c.replace(/(\/\*[^]*?\*\/|\s)+/g,' ')
+          .replace(/^ | $|[ ;]*([^\w.#'" ]) */g,'$1')
 }</pre>
     <br>
     <h4>Options</h4>
@@ -45,7 +45,9 @@
       <br>
       - <label><input type=checkbox> Convert rgb colors in hexadecimal, minify hexadecimal (example: rgb(10,20,30) &rarr; #0A151F, #556677 &rarr; #567)</label>
       <br>
-      - <label><input type=checkbox> Preserve old IE compatibility</label>
+      - <label><input type=checkbox> Preserve old IE compatibility (add spaces after closing parenthesis)</label>
+      <br>
+      - <label><input type=checkbox> Even shorter! (but you have to execute it 4 times)</label>
       <br>
     </div>
     <br>
@@ -80,68 +82,137 @@
       }
       
       function updateMinifier(){
+      
+        var tmp;
+      
+        // Classic
+        if(!checkboxes[4].checked){
         
-        // Minifier code
-        if(checkboxes[3].checked){
-          code = "function(c,r){\n  return c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')\n          [r](/^ | $|[ ;]*([^\\w.#) ]) *| (\\))/g,'$1$2')\n";
-          minicode = "c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([^\\w.#) ]) *| (\\))/g,'$1$2')";
+          document.getElementById("minify").innerHTML = "Minify!";
+        
+          // First regex
+          tmp = "c.replace(/(\\/\\*[^]*?\\*\\/|\\s)+/g,' ')";
+          code = "function(c){\n  return " + tmp + "\n          ";
+          minicode = tmp;
+        
+          // zero + IE
+          if(checkboxes[1].checked && checkboxes[3].checked){
+          
+            tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#)'\" ]) *| (\\))/g,'$1$3$4$5$6')"
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
+          // Zero
+          else if(checkboxes[1].checked){
+          
+            tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#'\" ]) */gi,'$1$3$4$5')";
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
+          // IE
+          else if(checkboxes[3].checked){
+          
+            tmp = ".replace(/^ | $|[ ;]*([^\\w.#)'\" ]) *| (\\))/g,'$1$2')";
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+          
+          // neither
+          else{
+          
+            tmp = ".replace(/^ | $|[ ;]*([^\\w.#'\" ]) */g,'$1')";
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
         }
+
+        // Even shorter
+        else {
         
-        else{
-          code = "function(c,r){\n  return c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')\n          [r](/^ | $|[ ;]*([^\\w.# ]) */g,'$1')\n";
-          minicode = "c[r='replace'](/((\\/\\*[^]*?\\*\\/)|\\s)+/g,' ')[r](/^ | $|[ ;]*([^\\w.# ]) */g,'$1')";
-        }
+          document.getElementById("minify").innerHTML = "Minify! (called 4 times)";
         
-        // Zero
-        if(checkboxes[1].checked){
-          code += "          [r](/(\\D)((0)[a-z%]+|0(\\.))/gi,'$1$3$4')\n";
-          minicode += "[r](/(\\D)((0)[a-z%]+|0(\\.))/gi,'$1$3$4')";
+          code = "function(c){\n  return ";
+          minicode = "";
+        
+          // zero + IE
+          if(checkboxes[1].checked && checkboxes[3].checked){
+          
+            tmp = "c.replace(/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s])\\s*|\\s(\\))/gi,'$1$3$4$5$6')"
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
+          // Zero
+          else if(checkboxes[1].checked){
+          
+            tmp = "c.replace  (/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s])\\s*/gi,'$1$3$4$5')"
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
+          // IE
+          else if(checkboxes[3].checked){
+          
+            tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s])\\s*|\\s(\\))/g,'$1$2')"
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+          
+          // neither
+          else{
+          
+            tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s])\\s*/g,'$1')"
+            code += tmp + "\n";
+            minicode += tmp;
+          
+          }
+
         }
         
         // Colors
         if(checkboxes[2].checked){
-          code += "          [r](/rgb\\((\\d+),(\\d+),(\\d+)\\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){\n                if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}\n                p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h\n             })\n";
-          minicode += "[r](/rgb\\((\\d+),(\\d+),(\\d+)\\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})";
+          code += "          .replace(/rgb\\((\\d+),(\\d+),(\\d+)\\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){\n            if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}\n            p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})\n";
+          minicode += ".replace(/rgb\\((\\d+),(\\d+),(\\d+)\\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})";
         }
-        
+
         code += "}";
         
         // Update
-        document.getElementById("js").innerHTML = code;
         document.getElementById("bytes").innerHTML = "(" + minicode.length + " bytes)";
+        
+        // Fix for IE if the checkbox is checked after a minification without this option
+        if(checkboxes[3].checked){
+          minicode += ".replace(/\\)(?![;{} ])/,') ')";
+        }
+        document.getElementById("js").innerHTML = code;
       }
       
       // Handle click on "Minify!"
-      document.getElementsByTagName("button")[0].addEventListener("click", function(){
+      document.getElementById("minify").addEventListener("click", function(){
         var css = document.getElementById("css").value;
-
         var size = css.length;
-        
-        css = css.replace(/((\/\*[^]*?\*\/)|\s)+/g,' ')
-        
-        if(checkboxes[3].checked){
-          css = css.replace(/^ | $|[ ;]*([^\w.#) ]) *| (\))/g,'$1$2');
-          css = css.replace(/\)(?![;{} ])/g,') ')
+        var minify = new Function("c","return " + minicode);
+        css = minify(css);
+        if(checkboxes[4]){
+          css = minify(minify(minify(css)));
         }
-        else{
-          css = css.replace(/^ | $|[ ;]*([^\w.# ]) */g,'$1')
-        }
-
-        // Zero
-        if(checkboxes[1].checked){
-          css = css.replace(/(\D)((0)[a-z%]+|0(\.))/gi,'$1$3$4')
-        }
-        
-        // Colors
-        if(checkboxes[2].checked){
-          css = css.replace(/rgb\((\d+),(\d+),(\d+)\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})
-        }
-        
-        // Update
         document.getElementById("css").value = css;
         var size2 = css.length;
         alert("Before: " + size + "Bytes. After: " + size2 + "Bytes. Saved: " + ((100 - Math.round(size2 / size * 100)) || 0) + "%.");
       })
+      
+      updateMinifier();
+      
     </script>
   </body>
 </html>
