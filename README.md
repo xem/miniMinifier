@@ -21,8 +21,8 @@ v0.3:
 // Original version: Remove more unnecessary spaces (118 bytes)
 css.replace(/\/\*(\s|.)*?\*\/|\s+/g,' ').replace(/^ *| *$|[ ;]*([{};,:!+>~\(\)]) */g,'$1').replace(/\)([^;{}])/g,') $1')
 
-// Lighter version, to call many times (101 bytes)
-css.replace(/^ | $|[ ;]*([{};,:!+>~\(\)]) */g, '$1').replace(/\s+|\/\*.*?\*\/|(\))([^;,{}])/g, '$1 $2')
+// Lighter version, to call many times (100 bytes)
+css.replace(/^ | $|[ ;]*([{};,:!+>~\(\)]) */g, '$1').replace(/\s+|\/\*.*?\*\/|(\))([^;,{}])/g,'$1 $2')
 
 // Options updates:
 
@@ -71,10 +71,10 @@ css[r='replace'](/((\/\*[^]*?\*\/)|\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~()-@]) 
 
 // Options updates:
 
-// Merged leading zeros + zero's unit (87 + 40 bytes)
+// Merged leading zeros option + zero's unit option (87 + 40 bytes)
 [r](/(\D)((0)[a-z%]+|0(\.))/gi,'$1$3$4')
 
-// RGB (87 + 137 bytes)
+// RGB option (87 + 137 bytes)
 [r](/rgb\((\d+),(\d+),(\d+)\)/gi,function(h,a,b,c,i,p){p='#';h=[a,b,c];for(i in h)p+=(0+parseInt(h[i]).toString(16)).slice(-2);return p})
 ```
 
@@ -114,10 +114,8 @@ css.replace(/(\/\*[^]*?\*\/|\s)+/g,' ').replace(/(\D)((0)[a-z%]+|0(\.))|^ | $|[ 
 
 
 
-// Even shorter version (to call many times) (62 bytes)
+// Even shorter version, to call many times (62 bytes)
 css.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#'"\s])\s*/g,'$1')
-
-// Options:
 
 // IE fix (62 + 10 bytes)
 css.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#)'"\s])\s*|\s(\))/g,'$1$2')
