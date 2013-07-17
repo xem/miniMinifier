@@ -1,0 +1,28 @@
+<!doctype html>
+<textarea id="code" style="width:100%; height:400px">
+
+</textarea>
+<br>
+<button id="minify">minify html</button>
+<script>
+	var c = document.getElementById("code");
+	var m = document.getElementById("minify");
+	m.onclick = function(){
+		var before = c.value;
+		var size1 = before.length;
+		var after = before.replace(/\s+/gmi, " ")
+		                  .replace(/ \/>/gi, ">")
+											.replace(/> </gi, "><")
+											.replace(/ ?\+ ?/gi, "+")
+											.replace(/ ?: ?/gi, ":")
+											.replace(/ ?, ?/gi, ",")
+											.replace(/ ?{ ?/gi, "{")
+											.replace(/ ?} ?/gi, "}")
+											.replace(/ ?\? ?/gi, "?")
+											.replace(/<(th|td|div|span|p)/gi, " <$1");
+		var size2 = after.length;
+		c.value = after;
+		alert("saved " + (size1 - size2) + " byetes");
+	}
+	
+</script>

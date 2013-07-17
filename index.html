@@ -2,45 +2,27 @@
 <html>
   <head>
     <meta charset=utf-8>
-    <title>CSS Mini Minifier</title>
+    <title>Mini Minifier</title>
     <link rel=stylesheet href="style.css">
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.7</h1>
-    <h3>The Insanely Short <span id=bytes title="size of the minifying expression, without the surrounding function">(80 bytes)</span> CSS Minifier Written in JavaScript!</h3>
+    <h1>Mini Minifier 0.8</h1>
+    <h2>Choose a language to minify</h2>
     <br>
-    <h4>CSS code:</h4>
-    <textarea id=css spellcheck=false></textarea>
-    <h4><span>Try <a href="javascript:;" id=ex1>Normalize.css</a> or <a href="javascript:;"id=ex2>miniMinifier test file</a> !</span></h4>
+    <button onclick="window.location='css.html'">Minify CSS</button>
     <br>
     <br>
-    <h4>Minifier's JS code:</h4>
-    <h5>(Call this function with one parameter: a string containing the CSS code)
-    <pre id=js>function(c){ 
-  return c.replace(/(\/\*[^]*?\*\/|\s)+/g,' ')
-          .replace(/^ | $|[ ;]*([^\w.#'" ]) */g,'$1')
-}</pre>
+    <button onclick="window.location='js.html'">Minify JS (beta)</button>
     <br>
-    <h4>Options</h4>
-    <div>
-      - <label><input type=checkbox checked disabled> Remove unnecessary comments, spaces, tabs, line breaks and semicolons</label>
-      <br>
-      - <label><input type=checkbox> Remove leading zeros and units after 0 (example: 0.25 &rarr; .25, 0px &rarr; 0)</label>
-      <br>
-      - <label><input type=checkbox> Convert rgb colors in hexadecimal, minify hexadecimal (example: rgb(10,20,30) &rarr; #0A151F, #556677 &rarr; #567)</label>
-      <br>
-      - <label><input type=checkbox> Preserve old IE compatibility (add spaces after closing parenthesis)</label>
-      <br>
-      - <label><input type=checkbox> Even shorter! (but you have to execute it many times to minify everything)</label>
-      <br>
-    </div>
     <br>
-    <button id=minify>Minify!</button>
+    <button onclick="window.location='json.html'">Minify JSON (beta)</button>
+    <br>
+    <br>
+    <button onclick="window.location='html.html'">Minify HTML (beta)</button>
     <br>
     <br>
     <br>
-    By <a href="http://twitter.com/MaximeEuziere">Maxime Euzière</a> for <a href="http://140byt.es">140byt.es</a> - <a href="https://gist.github.com/xem/5476454">See Gist</a> - <a href="http://github.com/xem/miniMinifier">Fork me on Github</a>
-    
-    <script src="css.js"></script>
+    By <a href="http://twitter.com/MaximeEuziere">Maxime Euzière</a> for <a href="http://140byt.es">140byt.es</a> - <a href="http://github.com/xem/miniMinifier">Fork me on Github</a>
+
   </body>
 </html>
