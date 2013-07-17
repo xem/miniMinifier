@@ -37,7 +37,7 @@ function updateMinifier(){
     // zero + IE
     if(checkboxes[1].checked && checkboxes[3].checked){
     
-      tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#)'\" ]) *| (\\))/gi,'$1$3$4$5$6')"
+      tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#)'\" *]) *| (\\))/gi,'$1$3$4$5$6')"
       code += tmp + "\n";
       minicode += tmp;
     
@@ -46,7 +46,7 @@ function updateMinifier(){
     // Zero
     else if(checkboxes[1].checked){
     
-      tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#'\" ]) */gi,'$1$3$4$5')";
+      tmp = ".replace(/(\\D)((0)[a-z%]+|0(\\.))|^ | $|[ ;]*([^\\w.#'\" *]) */gi,'$1$3$4$5')";
       code += tmp + "\n";
       minicode += tmp;
     
@@ -55,7 +55,7 @@ function updateMinifier(){
     // IE
     else if(checkboxes[3].checked){
     
-      tmp = ".replace(/^ | $|[ ;]*([^\\w.#)'\" ]) *| (\\))/g,'$1$2')";
+      tmp = ".replace(/^ | $|[ ;]*([^\\w.#)'\" *]) *| (\\))/g,'$1$2')";
       code += tmp + "\n";
       minicode += tmp;
     
@@ -64,7 +64,7 @@ function updateMinifier(){
     // neither
     else{
     
-      tmp = ".replace(/^ | $|[ ;]*([^\\w.#'\" ]) */g,'$1')";
+      tmp = ".replace(/^ | $|[ ;]*([^\\w.#'\" *]) */g,'$1')";
       code += tmp + "\n";
       minicode += tmp;
     
@@ -83,7 +83,7 @@ function updateMinifier(){
     // zero + IE
     if(checkboxes[1].checked && checkboxes[3].checked){
     
-      tmp = "c.replace(/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s])\\s*|\\s(\\))/gi,'$1$3$4$5$6')"
+      tmp = "c.replace(/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s*])\\s*|\\s(\\))/gi,'$1$3$4$5$6')"
       code += tmp + "\n";
       minicode += tmp;
     
@@ -92,7 +92,7 @@ function updateMinifier(){
     // Zero
     else if(checkboxes[1].checked){
     
-      tmp = "c.replace(/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s])\\s*/gi,'$1$3$4$5')"
+      tmp = "c.replace(/(\\D)((0)[a-z%]+|0(\\.))|^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s*])\\s*/gi,'$1$3$4$5')"
       code += tmp + "\n";
       minicode += tmp;
     
@@ -101,7 +101,7 @@ function updateMinifier(){
     // IE
     else if(checkboxes[3].checked){
     
-      tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s])\\s*|\\s(\\))/g,'$1$2')"
+      tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#\)'\"\\s*])\\s*|\\s(\\))/g,'$1$2')"
       code += tmp + "\n";
       minicode += tmp;
     
@@ -110,7 +110,7 @@ function updateMinifier(){
     // neither
     else{
     
-      tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s])\\s*/g,'$1')"
+      tmp = "c.replace(/^\\s|\\s$|\\/\\*[^]*?\\*\\/|\\s*;*([^\\w.#'\"\\s*])\\s*/g,'$1')"
       code += tmp + "\n";
       minicode += tmp;
     
