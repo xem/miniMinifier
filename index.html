@@ -6,7 +6,7 @@
     <link rel=stylesheet href="style.css">
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.7</h1>
+    <h1>CSS Mini Minifier v0.8</h1>
     <h3>The Insanely Short <span id=bytes title="size of the minifying expression, without the surrounding function">(81 bytes)</span> CSS Minifier Written in JavaScript!</h3>
     <br>
     <h4>CSS code:</h4>
@@ -18,7 +18,7 @@
     <h5>(Call this function with one parameter: a string containing the CSS code)
     <pre id=js>function(c){ 
   return c.replace(/(\/\*[^]*?\*\/|\s)+/g,' ')
-          .replace(/^ | $|[ ;]*([^\w.#'" *]) */g,'$1')
+          .replace(/^ | $|[ ;]*([^\w.#'" *-]) */g,'$1')
 }</pre>
     <br>
     <h4>Options</h4>

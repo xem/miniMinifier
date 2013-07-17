@@ -126,3 +126,10 @@ css.replace(/(\D)((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#'"\s])\s*/
 // Both (62 + 40 bytes)
 css.replace(/(\D)((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#)'"\s])\s*|\s(\))/gi,'$1$3$4$5$6')
 ```
+
+v.0.8:
+Added 2 bytes to handle correctly rare bugs like ";-" -> "-" and "* *" -> "**"
+
+```js
+// [^\w.#'"\s] is now [^\w.#'"\s*-] in the regex
+````
