@@ -133,3 +133,7 @@ Added 2 bytes to handle correctly rare bugs like ";-" -> "-" and "* *" -> "**"
 ```js
 // [^\w.#'"\s] is now [^\w.#'"\s*-] in the regex
 ````
+
+v.0.9:
+
+Added a few bytes to keep spaces before pseudo-selectors (like div :hover) and to keep the characters around zero if it's not a length. (like #c0c0c0)

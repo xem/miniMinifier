@@ -6,8 +6,8 @@
     <link rel=stylesheet href="style.css">
   </head>
   <body>
-    <h1>CSS Mini Minifier v0.8</h1>
-    <h3>The Insanely Short <span id=bytes title="size of the minifying expression, without the surrounding function">(81 bytes)</span> CSS Minifier Written in JavaScript!</h3>
+    <h1>CSS Mini Minifier v0.9</h1>
+    <h3>The Smallest <span id=bytes>(92 bytes)</span> CSS Minifier Written in JavaScript!</h3>
     <br>
     <h4>CSS code:</h4>
     <textarea id=css spellcheck=false></textarea>
@@ -16,10 +16,8 @@
     <br>
     <h4>Minifier's JS code:</h4>
     <h5>(Call this function with one parameter: a string containing the CSS code)
-    <pre id=js>function(c){ 
-  return c.replace(/(\/\*[^]*?\*\/|\s)+/g,' ')
-          .replace(/^ | $|[ ;]*([^\w.#'" *-]) */g,'$1')
-}</pre>
+    <pre id=js>c.replace(/(\\/\\*[^]*?\\*\\/|\\s)+/g,' ')
+ .replace(/^ | $|[ ;]*([^\\:\\w.#'\" *-]) *|(:) */g,'$1$2')</pre>
     <br>
     <h4>Options</h4>
     <div>
@@ -29,9 +27,11 @@
       <br>
       - <label><input type=checkbox> Convert rgb colors in hexadecimal, minify hexadecimal (example: rgb(10,20,30) &rarr; #0A151F, #556677 &rarr; #567)</label>
       <br>
-      - <label><input type=checkbox> Preserve old IE compatibility (add spaces after closing parenthesis)</label>
+      - <label><input type=checkbox> Preserve old IE compatibility (keep spaces after closing parenthesis)</label>
       <br>
-      - <label><input type=checkbox> Even shorter! (but you have to execute it many times to minify everything)</label>
+      - <label><input type=checkbox> Make the minifier even shorter! (but it will need multiple calls)</label>
+			<br>
+      - <label><input type=checkbox> Beautify (experimental, but hey, not bad already!)</label>
       <br>
     </div>
     <br>
