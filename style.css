@@ -12,3 +12,4 @@ button { padding: 5px; }
 div { text-align: left; margin-top: 10px; }
 pre { height: 110px; font-size: 12px; text-align: left; font-family: monospace; background: #fff; border: 1px solid #89a; padding: 10px; }
 textarea, pre { border-radius: 10px; border-right: 3px solid #89a; border-bottom: 3px solid #89a; margin-top: 10px }
+p, p a { font-size: 20px; font-weight: bold; color:#f00; }
