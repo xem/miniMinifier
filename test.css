@@ -2,17 +2,35 @@
 
 /* Simple */
 
-/* remove unnecessary spaces and semicolons */
-.braces { color:#001 }                                   /* remove spaces around "{" and "}" */
-.colon { color: #002 }                                   /* remove spaces after ":" */
-.semicolon { color: #003 ; background: #003 }            /* remove spaces around ";" */
-.class1 , .class2 { color: #004 }                        /* remove spaces around "," */
-.class1 + .class2 { color: #005 }                        /* remove spaces around "+" */
-.class1 > .class2 { color: #006 }                        /* remove spaces around ">" */
-.class1 ~ .class2 { color: #007 }                        /* remove spaces around "~" */
-.parenthesis { background: url ( bg.jpg ) #008 }         /* remove spaces around "(" and ")" */
-@media (screen) {} @media (print) { }                    /* remove spaces before "@" */
-.trailing_semicolon { color: #010; }                     /* remove semicolon before "}" */
+/* remove spaces around "{" and "}" */
+.braces { color:#001 }
+
+/* remove spaces after ":" */
+.colon { color: #002 }
+
+/* remove spaces around ";" */
+.semicolon { color: #003 ; background: #003 }
+
+/* remove spaces around "," */
+.class1 , .class2 { color: #004 }
+
+/* remove spaces around "+" */
+.class1 + .class2 { color: #005 }
+
+/* remove spaces around ">" */
+.class1 > .class2 { color: #006 }
+
+/* remove spaces around "~" */
+.class1 ~ .class2 { color: #007 }
+
+/* remove spaces around "(" and ")" */
+.parenthesis { background: url ( bg.jpg ) #008 }
+
+/* remove spaces before "@" */
+@media (screen) { a { color: #009 } } @media (print) { a { color: #009 } }
+
+/* remove semicolon before "}" */
+.trailing_semicolon { color: #010; }                     
 
 
 
@@ -49,6 +67,9 @@
 
 /* Convert RGB to minified hexadecimal colors (where applicable) */
 .rgb + .hexadecimal { color: rgb(51, 102, 153) }
+
+/* Remove empty rules */
+.empty { /* nothing */ ; /* still nothing */ ; }
 
 /* For IE < 9: keep a space between closing parenthesis and letters */
 .ie { background: url(bg.jpg) no-repeat }
