@@ -8,7 +8,6 @@
 <br>
 <a href=//github.com/xem/miniMinifier><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 <h1>Mini HTML Minifier</h1>
-<h2>Paste HTML code, it's instantly minified!</h2>
 <br>
 <center>
 Golfed by <a href="//twitter.com/MaximeEuziere" target=_blank>xem</a>
@@ -25,17 +24,20 @@ Nothing to minify? Try it with <a href="view-source:test.html" target=_blank>my 
   <li>Removes unnecessary whitespaces
   <li>Removes trailing spaces and slashes in tags
   <li>Removes unnecessary closing tags
-  <li>(Doesn't remove HTML comments because they can be used for templating)
+  <li>Doesn't remove HTML comments because they can be used by templating engines
 </ul>
 <pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=t></pre>
-<textarea oninput='for(i=9;i--;)t.value=t.value.replace(/<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=t></textarea>
+<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)t.value=t.value.replace(/<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=t></textarea>
 <br>
 <br>
 <br>
 
 <h3>More compression (136 bytes)</h3>
 <ul>
+  <li>Removes unnecessary whitespaces
+  <li>Removes trailing spaces and slashes in tags
+  <li>Removes unnecessary closing tags
   <li>Remove HTML comments
 </ul>
-<pre>&lt;textarea oninput='for(i=9;i--;)u.value=u.value.replace(/&lt;!.*?-->|&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=u></pre>
-<textarea oninput='for(i=9;i--;)u.value=u.value.replace(/<!.*?->|<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=u>
+<pre>&lt;textarea oninput='for(i=9;i--;)u.value=u.value.replace(/&lt;!.*?->|&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=u></pre>
+<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)u.value=u.value.replace(/<!.*?->|<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=u>
