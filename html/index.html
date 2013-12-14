@@ -1,4 +1,4 @@
-<style>html{background:#ddd}body{font-family:arial;width:780px;margin:0 auto;background:#fff;padding:20px;line-height:25px}h1,h2{margin:10px;text-align:center}h1{font:bold 50px monospace}textarea{width:100%;height:200px}pre{background:#def;padding:5px;border-radius:5px;white-space: pre-wrap}a{font-weight:bold}button{border:1px solid #000;background:#00f;color:#fff;font-weight:bold;padding:10px;cursor:pointer}.disabled{background:#eef;color:#888;cursor:default}</style>
+<style>html{background:#ddd}body{font-family:arial;width:780px;margin:0 auto;background:#fff;padding:20px;line-height:25px}h1,h2{margin:10px;text-align:center}h1{font:bold 50px monospace}textarea{width:100%;height:200px}pre{background:#def;padding:5px;border-radius:5px;white-space:pre-wrap;line-height:14px}a{font-weight:bold}button{border:1px solid #000;background:#00f;color:#fff;font-weight:bold;padding:10px;cursor:pointer}.disabled{background:#eef;color:#888;cursor:default}</style>
 <center>
 <button onclick="location='..'">CSS Minifier</button>
 <button class=disabled>HTML Minifier</button>
@@ -13,14 +13,28 @@
 Golfed by <a href="//twitter.com/MaximeEuziere" target=_blank>xem</a>
 <br>
 Found a bug? Want a new feature? <a href="//github.com/xem/miniMinifier/issues?page=1&state=open" target=_blank>open an issue</a>
+<br>
+Nothing to minify? Try it with <a href="view-source:test.html" target=_blank>my test file</a> or any website's source code!
 </center>
 <br>
 <br>
 <br>
-<h3>HTML minifier (110 bytes)</h3>
+<h3>Simple compression (128 bytes)</h3>
 <ul>
-  <li>Removes comments
   <li>Removes unnecessary whitespaces
+  <li>Removes trailing spaces and slashes in tags
+  <li>Removes unnecessary closing tags
+  <li>(Doesn't remove HTML comments because they can be used for templating)
 </ul>
-<pre>&lt;textarea oninput='t.value=t.value.replace(/(\s|(<!.*?>))+/g," ").replace(/^ | $|(>) /g,"$1")'id=t></textarea></pre>
-<textarea oninput='t.value=t.value.replace(/(\s|(<!.*?>))+/g," ").replace(/^ | $|(>) /g,"$1")'id=t></textarea>
+<pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=t></pre>
+<textarea oninput='for(i=9;i--;)t.value=t.value.replace(/<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=t></textarea>
+<br>
+<br>
+<br>
+
+<h3>More compression (136 bytes)</h3>
+<ul>
+  <li>Remove HTML comments
+</ul>
+<pre>&lt;textarea oninput='for(i=9;i--;)u.value=u.value.replace(/&lt;!.*?-->|&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=u></pre>
+<textarea oninput='for(i=9;i--;)u.value=u.value.replace(/<!.*?->|<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=u>
