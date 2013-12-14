@@ -1,50 +1,41 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset=utf-8>
-    <title>CSS Mini Minifier</title>
-    <link rel=stylesheet href="style.css">
-  </head>
-  <body>
-    <h1>CSS Mini Minifier v1.0</h1>
-    <h3>The Smallest <span id=bytes>(92 bytes)</span> CSS Minifier in JavaScript!</h3>
-    <br>
-    <br>
-    <p>New: try the <a href="instant">instant minifiers</a></p>
-    <br>
-    <br>
-    <h4>CSS code:</h4>
-    <textarea id=css spellcheck=false></textarea>
-    <h4><span>Try <a href="javascript:;" id=ex1>Normalize.css</a> or <a href="javascript:;"id=ex2>miniMinifier test file</a> !</span></h4>
-    <br>
-    <br>
-    <h4>Minifier's JS code:</h4>
-    <h5>(Call this function with one parameter: a string containing the CSS code)
-    <pre id=js>c.replace(/(\\/\\*[^]*?\\*\\/|\\s)+/g,' ')
- .replace(/^ | $|[ ;]*([^\\:\\w.#'\" *-]) *|(:) */g,'$1$2')</pre>
-    <br>
-    <h4>Options</h4>
-    <div>
-      - <label><input type=checkbox checked disabled> Remove unnecessary comments, spaces, tabs, line breaks and semicolons</label>
-      <br>
-      - <label><input type=checkbox> Remove leading zeros and units after 0 (example: 0.25 &rarr; .25, 0px &rarr; 0)</label>
-      <br>
-      - <label><input type=checkbox> Convert rgb colors in hexadecimal, minify hexadecimal (example: rgb(10,20,30) &rarr; #0A151F, #556677 &rarr; #567)</label>
-      <br>
-      - <label><input type=checkbox> Preserve old IE compatibility (keep spaces after closing parenthesis)</label>
-      <br>
-      - <label><input type=checkbox> Make the minifier even shorter! (but it will need multiple calls)</label>
-			<br>
-      - <label><input type=checkbox> Beautify (experimental, but hey, not bad already!)</label>
-      <br>
-    </div>
-    <br>
-    <button id=minify>Minify!</button>
-    <br>
-    <br>
-    <br>
-    By <a href="http://twitter.com/MaximeEuziere">Maxime Euzière</a> for <a href="http://140byt.es">140byt.es</a> - <a href="https://gist.github.com/xem/5476454">See Gist</a> - <a href="http://github.com/xem/miniMinifier">Fork me on Github</a>
-    
-    <script src="css.js"></script>
-  </body>
-</html>
+<style>html{background:#ddd}body{font-family:arial;width:750px;margin:0 auto;background:#fff;padding:20px}h1,h2{margin:10px;text-align:center}h1{font:bold 50px monospace}textarea{width:100%;height:200px}pre{background:#def;padding:5px;border-radius:5px;white-space: pre-wrap}a{font-weight:bold}</style>
+<a href=//github.com/xem/miniMinifier/tree/gh-pages/instant><img style="position:absolute;top:0;right:0;border:0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<h1>Mini CSS Minifier</h1>
+<h2>Paste CSS code, it's instantly minified!</h2>
+<br>
+<center>
+Golfed by <a href="twitter.com/MaximeEuziere" target=_blank>xem</a>
+<br>
+Made in HTML/JS, powered by <a href="miniMinifier" target=_blank>MiniMinifier</a>
+<br>
+Found a bug? Want a new feature? <a href="//github.com/xem/miniMinifier/issues?page=1&state=open" target=_blank>open an issue</a>
+<br>
+Nothing to minify? Try it with <a href="test.css" target=_blank>my test file</a> or <a href="//raw.github.com/twbs/bootstrap/master/dist/css/bootstrap.css" target=_blank>Bootstrap</a> or <a href="//necolas.github.io/normalize.css/2.1.3/normalize.css" target=_blank>Normalize</a>
+</center>
+<br>
+<br>
+<br>
+<h3>Simple compression (128 bytes)</h3>
+<ul>
+  <li>Removes comments
+  <li>Removes unnecessary whitespaces
+  <li>Removes unnecessary semicolons
+</ul>
+<pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\:\w.#\x27"\s*-])\s*|(:) /g,"$1$2")'id=t></pre>
+<textarea oninput='for(i=9;i--;)t.value=t.value.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\:\w.#\x27"\s*-])\s*|(:) /g,"$1$2")'id=t></textarea>
+<br>
+<br>
+<br>
+<h3>Strong compression (388 bytes)</h3>
+<ul>
+  <li>Removes comments
+  <li>Removes unnecessary whitespaces
+  <li>Removes unnecessary semicolons
+  <li>Removes leading zeros
+  <li>Removes units after zero
+  <li>Converts rgb colors in hexadecimal
+  <li>minify hexadecimal values
+  <li>preserve old IE compatibility
+</ul>
+<pre>&lt;textarea oninput='for(i=9;i--;)u.value=u.value.replace(/([^#\d\w\(._\x27"-])((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\:\w.#)\x27"\s*-])\s*|\s(\))|(:) /gi,"$1$3$4$5$6$7").replace(/rgb\((\d+),(\d+),(\d+)\)|#[a-f0-9]{6}/gi,function(h,a,b,c){if(c){h="#";for(i in(p=[a,b,c]))h+=("0"+parseInt(p[i]).toString(16)).slice(-2)};return(p=h[2]+h[4]+h[6])==h[1]+h[3]+h[5]?"#"+p:h})'id=u></pre>
+<textarea oninput='for(i=9;i--;)u.value=u.value.replace(/([^#\d\w\(._\x27"-])((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\:\w.#)\x27"\s*-])\s*|\s(\))|(:) /gi,"$1$3$4$5$6$7").replace(/rgb\((\d+),(\d+),(\d+)\)|#[a-f0-9]{6}/gi,function(h,a,b,c){if(c){h="#";for(i in(p=[a,b,c]))h+=("0"+parseInt(p[i]).toString(16)).slice(-2)};return(p=h[2]+h[4]+h[6])==h[1]+h[3]+h[5]?"#"+p:h})'id=u>

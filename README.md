@@ -1,13 +1,6 @@
 miniMinifier
 ============
 
-A mini CSS minifier written in JavaScript
-
-http://xem.github.com/miniMinifier
-
-
-New: instant minifier
-
 http://xem.github.com/miniMinifier
 
 
