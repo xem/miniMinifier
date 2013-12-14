@@ -1,0 +1,54 @@
+/** Instant Minifier test file **/
+
+/* Simple */
+
+/* remove unnecessary spaces and semicolons */
+.braces { color:#001 }                                   /* remove spaces around "{" and "}" */
+.colon { color: #002 }                                   /* remove spaces after ":" */
+.semicolon { color: #003 ; background: #003 }            /* remove spaces around ";" */
+.class1 , .class2 { color: #004 }                        /* remove spaces around "," */
+.class1 + .class2 { color: #005 }                        /* remove spaces around "+" */
+.class1 > .class2 { color: #006 }                        /* remove spaces around ">" */
+.class1 ~ .class2 { color: #007 }                        /* remove spaces around "~" */
+.parenthesis { background: url ( bg.jpg ) #008 }         /* remove spaces around "(" and ")" */
+@media (screen) {} @media (print) { }                    /* remove spaces before "@" */
+.trailing_semicolon { color: #010; }                     /* remove semicolon before "}" */
+
+
+
+/* Strong */
+
+
+/* remove leading zeros */
+.leading_zero { border: 0.11em }
+
+/* remove units after zero */
+.zero_unit {
+  width: 0px;
+  width: 0in;
+  width: 0cm;
+  width: 0mm;
+  width: 0em;
+  width: 0rem;
+  width: 0pt;
+  width: 0pc;
+  width: 0ex;
+  width: 0ch;
+  width: 0vw;
+  width: 0vh;
+  width: 0vmin;
+  width: 0vmax;
+  width: 0%;
+}
+
+/* Convert rgb in hexadecimal */
+.rgb { color: rgb(0, 11, 222); background: RGB(111, 22, 3) }
+
+/* Minify haxadecimal colors (where applicable) */
+.hexadecimal { color: #123456; background: #113355 }
+
+/* Convert RGB to minified hexadecimal colors (where applicable) */
+.rgb + .hexadecimal { color: rgb(51, 102, 153) }
+
+/* For IE < 9: keep a space between closing parenthesis and letters */
+.ie { background: url(bg.jpg) no-repeat }

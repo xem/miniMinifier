@@ -5,6 +5,14 @@ A mini CSS minifier written in JavaScript
 
 http://xem.github.com/miniMinifier
 
+
+New: instant minifier
+
+http://xem.github.com/miniMinifier
+
+
+<!--
+
 Changelog:
 ----------
 
@@ -137,3 +145,4 @@ Added 2 bytes to handle correctly rare bugs like ";-" -> "-" and "* *" -> "**"
 v.0.9:
 
 Added a few bytes to keep spaces before pseudo-selectors (like div :hover) and to keep the characters around zero if it's not a length. (like #c0c0c0)
+-->
