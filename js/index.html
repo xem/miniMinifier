@@ -1,4 +1,4 @@
-<style>html{background:#ddd}body{font-family:arial;width:780px;margin:0 auto;background:#fff;padding:20px;line-height:25px}h1,h2{margin:10px;text-align:center}h1{font:bold 50px monospace}textarea{width:100%;height:200px}pre{background:#def;padding:5px;border-radius:5px;white-space:pre-wrap;line-height:14px}a{font-weight:bold}button{border:1px solid #000;background:#00f;color:#fff;font-weight:bold;padding:10px;cursor:pointer}.disabled{background:#eef;color:#888;cursor:default}</style>
+<link rel=stylesheet href="../style.css">
 <center>
 <button onclick="location='../html'">128b HTML Minifier</button>
 <button onclick="location='../css'">128b CSS Minifier</button>
@@ -24,6 +24,7 @@ Nothing to minify? Try <a href="test.js" target=_blank>my test file</a> or <a hr
   <li>Removes comments
   <li>Removes unnecessary whitespaces
   <li>Removes unnecessary semicolons
+  <li>Warning: characters are also removed in strings (example: t = "this &nbsp; is &nbsp; a &nbsp; { test; }" )
 </ul>
 <pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ |;? ?$|; *(})| *(\W) */g,"$1$2")'id=t></pre>
 <textarea placeholder="Paste JS code here" oninput='t.value=t.value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ |;? ?$|; *(})| *(\W) */g,"$1$2")'id=t>
