@@ -19,25 +19,25 @@ Nothing to minify? Try it with <a href="view-source:test.html" target=_blank>my 
 <br>
 <br>
 <br>
-<h3>Simple compression (128 bytes)</h3>
+<h3>Simple compression (120 bytes)</h3>
 <ul>
   <li>Removes unnecessary whitespaces
   <li>Removes trailing spaces and slashes in tags
   <li>Removes unnecessary closing tags
   <li>Doesn't remove HTML comments because they can be used by templating engines
 </ul>
-<pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=t></pre>
-<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)t.value=t.value.replace(/<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=t></textarea>
+<pre>&lt;textarea oninput='for(i=9;i--;)value=value.replace(/&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'></pre>
+<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)value=value.replace(/<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'></textarea>
 <br>
 <br>
 <br>
 
-<h3>More compression (136 bytes)</h3>
+<h3>More compression (128 bytes)</h3>
 <ul>
   <li>Removes unnecessary whitespaces
   <li>Removes trailing spaces and slashes in tags
   <li>Removes unnecessary closing tags
   <li>Remove HTML comments
 </ul>
-<pre>&lt;textarea oninput='for(i=9;i--;)u.value=u.value.replace(/&lt;!.*?->|&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'id=u></pre>
-<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)u.value=u.value.replace(/<!.*?->|<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'id=u>
+<pre>&lt;textarea oninput='for(i=9;i--;)value=value.replace(/&lt;!.*?->|&lt;\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|&lt;\/p>\s*(?=&lt;p>|$)/gi,"$1$2")'></pre>
+<textarea placeholder="Paste HTML code here" oninput='for(i=9;i--;)value=value.replace(/<!.*?->|<\/[tl].>\s*|[\s/]*(^|$|>)\s*|(\s)\s|<\/p>\s*(?=<p>|$)/gi,"$1$2")'>

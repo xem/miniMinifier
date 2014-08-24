@@ -19,12 +19,12 @@ Nothing to minify? Try <a href="test.js" target=_blank>my test file</a> or <a hr
 <br>
 <br>
 <br>
-<h3>Simple compression (127 bytes)</h3>
+<h3>Simple compression (121 bytes)</h3>
 <ul>
   <li>Removes comments
   <li>Removes unnecessary whitespaces
   <li>Removes unnecessary semicolons
-  <li>Warning: characters are also removed in strings (example: t = "this &nbsp; is &nbsp; a &nbsp; { test; }" )
+  <li>Warning: doesn't preserve strings
 </ul>
-<pre>&lt;textarea oninput='for(i=9;i--;)t.value=t.value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ |;? ?$|; *(})| *(\W) */g,"$1$2")'id=t></pre>
-<textarea placeholder="Paste JS code here" oninput='t.value=t.value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ |;? ?$|; *(})| *(\W) */g,"$1$2")'id=t>
+<pre>&lt;textarea oninput='value=value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ *|; *(})|;? *?$| *(\W) */g,"$1$2")'></pre>
+<textarea placeholder="Paste JS code here" oninput='value=value.replace(/(\/\*[^]*?\*\/|\/\/.*|\s)+/g," ").replace(/^ *|; *(})|;? *?$| *(\W) */g,"$1$2")'>
