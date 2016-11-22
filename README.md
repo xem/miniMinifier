@@ -63,7 +63,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/css2.html (coming soon)
 
-- Advanced test file: https://github.com/xem/miniMinifier/blob/gh-pages/test.css
+- Advanced test file: https://github.com/xem/miniMinifier/blob/gh-pages/test2.css
 
 - Advanced features:
 
