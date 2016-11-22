@@ -1,4 +1,4 @@
-MiniMinifier
+MiniMinifier (2016 version)
 ==
 
 A collection of super tiny minifiers more efficient than most of the other online minifiers
@@ -10,9 +10,9 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 ````<textarea oninput='value=value.replace(/(\/\*[^]+?\*\/|\s)+/g," ").replace(/^ |([ ;]*)([^\w:*.#% -])([ ;]*)|\*?(:) */g,"$2$4")'>````
 
-- Demo: http://xem.github.io/MiniMinifier/css.html
+- Demo: http://xem.github.io/miniMinifier/css.html
 
-- Simple test file: https:/github.com/xem/MiniMinifier/test.css
+- Simple test file: https:/github.com/xem/miniMinifier/test.css
 
 - Features:
 
@@ -38,9 +38,9 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 ````<textarea oninput='value=value.replace(/(<!--[^]+?->|\s)+/g," ").replace(/ (?=<|$)|<\/[tl].>|<.p> *(<[p/])| ?\/?(>)/gi,"$1$2")'>````
 
-- Demo: http://xem.github.io/MiniMinifier/html.html
+- Demo: http://xem.github.io/miniMinifier/html.html
 
-- Simple test file: https:/github.com/xem/MiniMinifier/test.htm
+- Simple test file: https:/github.com/xem/miniMinifier/test.htm
 
 - Features:
 
@@ -53,7 +53,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 - Benchmark:
 
   - **Our test.html**: commented: 710b - with willpeavy.com: 399b - with kangax.github.io/html-minifier: 273b - with MiniMinifier: 273b
-  
+
 --
   
 512b advanced CSS Minifier:
@@ -61,9 +61,9 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 ```` (coming soon) ````
 
-- Demo: http://xem.github.io/MiniMinifier/css2.html (coming soon)
+- Demo: http://xem.github.io/miniMinifier/css2.html (coming soon)
 
-- Advanced test file: https:/github.com/xem/MiniMinifier/test2.css
+- Advanced test file: https:/github.com/xem/miniMinifier/test2.css
 
 - Advanced features:
 
