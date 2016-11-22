@@ -1,141 +1,87 @@
-miniMinifier
-============
+MiniMinifier
+==
 
-http://xem.github.com/miniMinifier
+A collection of super tiny minifiers more efficient than most of the other online minifiers
 
+---
 
-<!--
+128b CSS Minifier:
+===
 
-Changelog:
-----------
+````<textarea oninput='value=value.replace(/(\/\*[^]+?\*\/|\s)+/g," ").replace(/^ |([ ;]*)([^\w:*.#% -])([ ;]*)|\*?(:) */g,"$2$4")'>````
 
-v0.1 / 0.2:
+- Demo: http://xem.github.io/MiniMinifier/css.html
 
-```js
-// Original version: Remove unnecessary spaces, tabs, line breaks, semicolons, IE compatibility (116 bytes)
-css.replace(/\s+/g,' ').replace(/\/\*.*?\*\/ *|^ | $|[ ;]*([{};,:!+>~\.!\(\)]) */g,'$1').replace(/\)([^;{}])/g,') $1')
-```
+- Simple test file: https:/github.com/xem/MiniMinifier/test.css
 
-v0.3:
+- Features:
 
-```js
-// Original version: Remove more unnecessary spaces (118 bytes)
-css.replace(/\/\*(\s|.)*?\*\/|\s+/g,' ').replace(/^ *| *$|[ ;]*([{};,:!+>~\(\)]) */g,'$1').replace(/\)([^;{}])/g,') $1')
+  - Instant output
+  - Doesn't alter your CSS rules and selectors
+  - Removes all CSS comments
+  - Removes all unnecessary spaces, tabs and line breaks
+  - Removes all unnecessary semicolons
+  - Removes all unnecessary ````*```` in CSS selectors (ex: ````*:before { ... }```` )
+  - Warning: strings can be altered (ex: ````content: "..."```` )
+  - Warning: doesn't remove spaces before ":" in CSS rules (ex: ````color :red```` )
+  
+- Benchmark:
+  
+  - **Bootstrap 3.3.7**: commented: 142.58kb - minified: 118.35kb - with csscompressor.com: 120.66kb - with MiniMinifier: 117.93kb
+  - **Normalize 5.0.0**: commented: 8.31kb - with csscompressor.com: 2332b - with MiniMinifier: 2331b
+  - **Our test.css**: commented: 1529b - with csscompressor.com: 503b - with MiniMinifier: 495b
 
-// Lighter version, to call many times (100 bytes)
-css.replace(/^ | $|[ ;]*([{};,:!+>~\(\)]) */g, '$1').replace(/\s+|\/\*.*?\*\/|(\))([^;,{}])/g,'$1 $2')
+---
 
-// Options updates:
+128b HTML minifier
+===
 
-// Remove leading zeros (118 + 29 bytes)
-.replace(/([ :,])0\./g,"$1.")
+````<textarea oninput='value=value.replace(/(<!--[^]+?->|\s)+/g," ").replace(/ (?=<|$)|<\/[tl].>|<.p> *(<[p/])| ?\/?(>)/gi,"$1$2")'>````
 
-// Remove some zero's units (118 + 36 bytes)
-.replace(/([ :,])0(em|px|%)/g,"$10")
+- Demo: http://xem.github.io/MiniMinifier/html.html
 
-// Minify RGB (118 + 152 bytes)
-.replace(/rgb\((\d{1,}),(\d{1,}),(\d{1,})\)/g,function(a,b,f,g,e,d){a="#";d=[b,f,g];for(e in d)a+=("0"+parseInt(d[e]).toString(16)).slice(-2);return a})
+- Simple test file: https:/github.com/xem/MiniMinifier/test.htm
 
-// Minify long hexadecimal colors (118 + 91 bytes)
-.replace(/#[a-f0-9]{6}/gi,function(a,b){b=a[2]+a[4]+a[6];return b==a[1]+a[3]+a[5]?"#"+b:a})
-```
+- Features:
 
-v0.4:
+  - Removes all HTML comments
+  - Removes all unnecessary spaces, tabs and line breaks
+  - Removes trailing spaces and slashes in tags (ex: ````<br />````)
+  - Removes unnecessary closing tags (````</li>````, ````</tr>````, ````</th>````,````</td>```` and ````</p>```` sometimes)
+  - Warning: strings can be altered (ex: ````<body onload="...">```` )
 
-```js
-// Original version: IE support is now optional (89 bytes):
-css[r="replace"](/((\/\*[^]*?\*\/)|\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~\(\)-@]) */g,'$1')
+- Benchmark:
 
-// Options updates:
+  - **Our test.html**: commented: 710b - with willpeavy.com: 399b - with kangax.github.io/html-minifier: 273b - with MiniMinifier: 273b
+  
+--
+  
+512b advanced CSS Minifier:
+===
 
-// Leading zeros (89 + 21 bytes)
-[r](/(\D)0\./g,'$1.')
+```` (coming soon) ````
 
-// Every possible zero's unit (89 + 29 bytes)
-[r](/(\D)0([a-z%]+)/gi,'$10')
+- Demo: http://xem.github.io/MiniMinifier/css2.html (coming soon)
 
-// RGB (89 + 139 bytes)
-[r](/rgb\((\d+),(\d+),(\d+)\)/gi,function(h,a,b,c,i,p){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2);return h})
+- Advanced test file: https:/github.com/xem/MiniMinifier/test2.css
 
-// Hexadecimal (89 + 86 bytes)
-[r](/#[a-f0-9]{6}/gi,function(h,p){p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})
+- Advanced features:
 
-// IE fix (89 + 24 bytes)
-[r](/\)(?![;{}])/g,') ')
-```
+  - Removes spaces before ":" in CSS rules
+  - Removes leading zeros
+  - Removes units after zero
+  - Converts RGB colors in hex
+  - Minifies 6-digit hex colors to 3-digit hex colors if possible
+  - Removes empty rules and media queries
+  - Removes unnecessary quotes in url(), font-family
+  - Replace font-weight values (normal = 400, bold = 500)
+  - Replace hex colors with shorter names
+  - Doesn't alter strings
 
-v0.5:
+- Benchmark:
+  
+  - **Bootstrap 3.3.7** : ???kb
+  - **Normalize 5.0.0** : ???b
+  - **Our test2.css** : ???b
 
-```js
-// Original version (87 bytes)
-css[r='replace'](/((\/\*[^]*?\*\/)|\s)+/g,' ')[r](/^ | $|[ ;]*([{};,:!+>~()-@]) */g,'$1')
-
-// Options updates:
-
-// Merged leading zeros option + zero's unit option (87 + 40 bytes)
-[r](/(\D)((0)[a-z%]+|0(\.))/gi,'$1$3$4')
-
-// RGB option (87 + 137 bytes)
-[r](/rgb\((\d+),(\d+),(\d+)\)/gi,function(h,a,b,c,i,p){p='#';h=[a,b,c];for(i in h)p+=(0+parseInt(h[i]).toString(16)).slice(-2);return p})
-```
-
-v0.6:
-
-```js
-// Merged original and IE option
-
-// Original (80 bytes)
-css.replace(/((\/\*[^]*?\*\/)|\s)+/g,' ').replace(/^ | $|[ ;]*([^\w.# ]) */g,'$1')
-
-// Original + IE (89 bytes)
-css.replace(/((\/\*[^]*?\*\/)|\s)+/g,' ').replace(/^ | $|[ ;]*([^\w.#) ]) *| (\))/g,'$1$2')
-
-// Options updates:
-
-// Merged RGB and hexadecimal options (+ 204 bytes)
-.replace(/rgb\((\d+),(\d+),(\d+)\)|#[a-f0-9]{6}/gi,function(h,a,b,c,i,p){if(c){h='#';p=[a,b,c];for(i in p)h+=('0'+parseInt(p[i]).toString(16)).slice(-2)}p=h[2]+h[4]+h[6];return p==h[1]+h[3]+h[5]?'#'+p:h})
-```
-
-v.0.7:
-
-```js
-// Merged original, IE option and zero's option
-
-// Original: handle quotes correctly (80 bytes)
-css.replace(/(\/\*[^]*?\*\/|\s)+/g,' ').replace(/^ | $|[ ;]*([^\w.#'" ]) */g,'$1')
-
-// Original + IE (80 + 9 bytes)
-css.replace(/(\/\*[^]*?\*\/|\s)+/g,' ').replace(/^ | $|[ ;]*([^\w.#)'" ]) *| (\))/g,'$1$2')
-
-// Original + zeros (80 + 30 bytes)
-css.replace(/(\/\*[^]*?\*\/|\s)+/g,' ').replace(/(\D)((0)[a-z%]+|0(\.))|^ | $|[ ;]*([^\w.#'" ]) */gi,'$1$3$4$5')
-
-// Original + both (80 + 39 bytes)
-css.replace(/(\/\*[^]*?\*\/|\s)+/g,' ').replace(/(\D)((0)[a-z%]+|0(\.))|^ | $|[ ;]*([^\w.#)'" ]) *| (\))/gi,'$1$3$4$5$6')
-
-
-
-// Even shorter version, to call many times (62 bytes)
-css.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#'"\s])\s*/g,'$1')
-
-// IE fix (62 + 10 bytes)
-css.replace(/^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#)'"\s])\s*|\s(\))/g,'$1$2')
-
-// Zeros (62 + 30 bytes)
-css.replace(/(\D)((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#'"\s])\s*/gi,'$1$3$4$5')
-
-// Both (62 + 40 bytes)
-css.replace(/(\D)((0)[a-z%]+|0(\.))|^\s|\s$|\/\*[^]*?\*\/|\s*;*([^\w.#)'"\s])\s*|\s(\))/gi,'$1$3$4$5$6')
-```
-
-v.0.8:
-Added 2 bytes to handle correctly rare bugs like ";-" -> "-" and "* *" -> "**"
-
-```js
-// [^\w.#'"\s] is now [^\w.#'"\s*-] in the regex
-````
-
-v.0.9:
-
-Added a few bytes to keep spaces before pseudo-selectors (like div :hover) and to keep the characters around zero if it's not a length. (like #c0c0c0)
--->
+---

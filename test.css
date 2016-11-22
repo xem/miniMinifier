@@ -1,0 +1,62 @@
+/**
+  Mini CSS Minifier
+  simple test file
+**/
+
+/* Simple */
+
+/* remove spaces and line breaks around "{" and "}" */
+.braces {
+  color:#001
+}
+
+/* remove spaces after ":" */
+.colon { color: #002 }
+
+/* remove spaces around ";" */
+.semicolon { color: #003 ; background: #003 }
+
+/* remove spaces around "," */
+.class1 , .class2 { color: #004 }
+
+/* remove spaces around "+" */
+.class1 + .class2 { color: #005 }
+
+/* remove spaces around ">" */
+.class1 > .class2 { color: #006 }
+
+/* remove spaces around "~" */
+.class1 ~ .class2 { color: #007 }
+
+/* remove spaces around "(" and ")" */
+.parenthesis { background: url ( bg.jpg ), url ( "bg.png" ) #008 }
+
+/* remove spaces before "@" */
+@media (screen) { a { color: #009 } } 
+@media (print) { a { color: #009 } }
+
+/* remove semicolon before "}" */
+.trailing_semicolon { color: #010; }      
+
+/* Remove unnecessary "*" before ":" or ";" or after "{" */
+*:before, *:after { color: #011; }
+
+/* Preserve space before ":" in selectors */            
+body *::placeholder :first { ;;; color: #012 ; ;  ; }
+
+/* Remove spaces before ":" when it follows ""}"
+  :first { color: #013 }
+
+/* Remove comments in rules */
+.comment { color: #014; /* comment */ color: #014 /*
+  multiline comment
+*/ ; }
+
+/* don't remove spaces between selector parts */
+a    .b #c    d { color: #015; }
+
+/* Keep one space around space-separated values */
+.digits { margin:   0   -2px   0%  0 ; box-shadow: 0   2px  #000 inset ; }
+
+/* remove trailing spaces */
+  
