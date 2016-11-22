@@ -12,7 +12,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/css.html
 
-- Simple test file: https:/github.com/xem/miniMinifier/test.css
+- Simple test file: https://github.com/xem/miniMinifier/test.css
 
 - Features:
 
@@ -40,7 +40,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/html.html
 
-- Simple test file: https:/github.com/xem/miniMinifier/test.htm
+- Simple test file: https://github.com/xem/miniMinifier/test.htm
 
 - Features:
 
@@ -63,7 +63,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/css2.html (coming soon)
 
-- Advanced test file: https:/github.com/xem/miniMinifier/test2.css
+- Advanced test file: https://github.com/xem/miniMinifier/test2.css
 
 - Advanced features:
 
