@@ -1,0 +1,8 @@
+<h3>Advanced CSS minifier</h3>
+<textarea oninput='value=value
+.replace(/".*?"|\x27.*?\x27/g,"STRING").replace(/(\/\*[^]+?\*\/|\s)+/g," ")
+.replace(/^ |(:) *(0(?=\.)|(0)[^\d;}.]+?(?=[;}]))|([ ;]*)([^\w:*.#% -])([ ;]*)|\*?(:) */g,"$1$3$5$7")
+.replace(/rgb\((.+?)\)/gi,(a,b)=>{b=eval("["+b+"]");return"#"+(100+(b[0]*65536+b[1]*256+b[2]).toString(16)).slice(-6)})
+.replace(/#[a-f0-9]{6}/gi,(a)=>{return((p=a[2]+a[4]+a[6]==a[1]+a[3]+a[5])?"#"+p:a)})
+.replace(/STRING/g,"LOL")'
+cols=100 rows=30 placeholder="Paste CSS code here">

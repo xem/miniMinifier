@@ -1,9 +1,6 @@
 /**
   Mini CSS Minifier
-  simple test file
 **/
-
-/* Simple */
 
 /* remove spaces and line breaks around "{" and "}" */
 .braces {
@@ -87,7 +84,7 @@ a    .b #c    d { color: #015; }
 @media screen and (min-resolution : 0dpi) { .example { color: red; } }
 
 /* More tests with zeros */
-.more_zero { border: 0.11em; margin: .0px 0px 0 0.0 0.0px; padding: .0 1.0px 1.0em 1%; }
+.more_zero { border: 0.11em solid; margin: .0px 0px 0 0.0 0.0px; padding: .0 1.0px 1.0em 1%; }
 
 /* don't remove "%" after "0" in these cases (but still remove ".0") */
 .zero_percent { background: hsl(111, 0%, 0%); color: hsl(222, 0.0%, 1.0%); }
@@ -97,6 +94,7 @@ a    .b #c    d { color: #015; }
 }
 
 /* Remove "-" before 0, and "+" before any number */
+/* NB for the lite version: "margin: -0+0 -10px+10px;" is valid in CSS */
 .sign { margin: -0 +0 -10px +10px; padding: -0px -0.0px -.0px +0px; }
 
 /* Convert rgb in hexadecimal */
@@ -184,7 +182,7 @@ a    .b #c    d { color: #015; }
 /* More spaces to remove */
 @media screen and (monochrome) and not (min-aspect-ratio : 1 / 1) { .example { color: red; } }
 
-/* More spaces not to remove (atound "+" and "-" in calc) */
+/* Do not remove spaces around "+" and "-" in calc */
 .calc { width: calc((1px + 1px - 10% + 2vmax) / 2) }
 
 /* remove trailing spaces */
