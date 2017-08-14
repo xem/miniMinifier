@@ -61,6 +61,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 ```` (coming soon) ````
 
+<!--
 - Demo: http://xem.github.io/miniMinifier/css2.html (coming soon)
 
 - Advanced test file: https://github.com/xem/miniMinifier/blob/gh-pages/test2.css
@@ -85,3 +86,4 @@ A collection of super tiny minifiers more efficient than most of the other onlin
   - **Our test2.css** : ???b
 
 ---
+-->
