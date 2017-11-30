@@ -1,4 +1,4 @@
-MiniMinifier (2016 version)
+MiniMinifier
 ==
 
 A collection of super tiny minifiers more efficient than most of the other online minifiers
@@ -12,7 +12,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/css.html
 
-- Simple test file: https://github.com/xem/miniMinifier/blob/gh-pages/test.css
+- Test file: https://github.com/xem/miniMinifier/blob/gh-pages/test.css
 
 - Features:
 
@@ -27,9 +27,9 @@ A collection of super tiny minifiers more efficient than most of the other onlin
   
 - Benchmark:
   
-  - **Bootstrap 3.3.7**: commented: 142.58kb - minified: 118.35kb - with csscompressor.com: 120.66kb - with MiniMinifier: 117.93kb
-  - **Normalize 5.0.0**: commented: 8.31kb - with csscompressor.com: 2332b - with MiniMinifier: 2331b
-  - **Our test.css**: commented: 1529b - with csscompressor.com: 503b - with MiniMinifier: 495b
+  - **Bootstrap 3.3.7**: commented: 142.58kb - minified: 118.35kb - csscompressor.com: 120.66kb - miniMinifier: 117.93kb
+  - **Normalize 5.0.0**: commented: 8.31kb - csscompressor.com: 2332b - miniMinifier: 2331b
+  - **Our test file**: commented: 1529b - csscompressor.com: 503b - miniMinifier: 495b
 
 ---
 
@@ -40,7 +40,7 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Demo: http://xem.github.io/miniMinifier/html.html
 
-- Simple test file: https://github.com/xem/miniMinifier/blob/gh-pages/test.html
+- Test file: https://github.com/xem/miniMinifier/blob/gh-pages/test.html
 
 - Features:
 
@@ -52,38 +52,11 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 - Benchmark:
 
-  - **Our test.html**: commented: 710b - with willpeavy.com: 399b - with kangax.github.io/html-minifier: 273b - with MiniMinifier: 273b
+  - **Our test file**: commented: 710b - willpeavy.com: 399b - [kangax](kangax.github.io/html-minifier): 273b - miniMinifier: 273b
 
 --
   
-512b advanced CSS Minifier:
+Advanced CSS Minifier:
 ===
 
 ```` (coming soon) ````
-
-<!--
-- Demo: http://xem.github.io/miniMinifier/css2.html (coming soon)
-
-- Advanced test file: https://github.com/xem/miniMinifier/blob/gh-pages/test2.css
-
-- Advanced features:
-
-  - Removes spaces before ":" in CSS rules
-  - Removes leading zeros
-  - Removes units after zero
-  - Converts RGB colors in hex
-  - Minifies 6-digit hex colors to 3-digit hex colors if possible
-  - Removes empty rules and media queries
-  - Removes unnecessary quotes in url(), font-family
-  - Replace font-weight values (normal = 400, bold = 500)
-  - Replace hex colors with shorter names
-  - Doesn't alter strings
-
-- Benchmark:
-  
-  - **Bootstrap 3.3.7** : ???kb
-  - **Normalize 5.0.0** : ???b
-  - **Our test2.css** : ???b
-
----
--->
