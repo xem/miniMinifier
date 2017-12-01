@@ -56,7 +56,50 @@ A collection of super tiny minifiers more efficient than most of the other onlin
 
 --
   
-Advanced CSS Minifier:
+Advanced CSS Minifier (1kb?):
 ===
 
-```` (coming soon) ````
+- Features:
+
+  - remove charset rule
+  - remove comments
+  - keep strings and urls unaltered
+  - remove spaces,tabs,line breaks around ~ ; , ( ) { } / @ ! < > =
+  - remove spaces around : in at-rules
+  - remove spaces before * and : in selectors, if possible
+  - remove spaces around + and - in selectors
+  - Remove all unnecessary * in selectors
+  - remove spaces around * and : in rules
+  - Remove spaces before hex colors
+  - Remove spaces between ":" and "rgb()"
+  - Remove all unnecessary semicolons
+  - Remove "+" and leading zeroes in numbers
+  - Remove ".0" in decimal numbers
+  - Remove "0." in decimal numbers
+  - Remove trailing zeroes in decimal numbers
+  - Remove "-" before zero
+  - Remove units after zero except %
+  - Remove % after zero, except in parenthesis and keyframes stops
+  - Remove "+", "-" and "." in "-.0", "+.0" and ".0"
+  - Convert rgba(0,0,0,0) in transparent
+  - Convert opaque rgba colors in rgb (ex: rgba(255, 0, 0, 1) => rgb(255, 0, 0))
+  - Convert rgb colors in hex (ex: rgb(255, 0, 0) => #FF0000)
+  - Minify 6-digit hex colors to 3-digit hex colors if possible (ex: #FF0000 => #F00)
+  - Replace hex colors with shorter names (ex: #F00 => red)
+  - Remove empty rules and empty media queries
+  - Replace font-weight values with numbers
+  - Simplify nth-of-type, nth-child, even, odd
+  - Rename ":root" in "html"
+  - Compress margin/padding/border-width/border-radius shorthands
+  - Convert some units (angles, times, sizes)
+  - Remove quotes around identifiers in font / font-family / etc (but not in content!)
+  - Remove "https?:" and quotes in urls
+  - Avoid repeating identical css properties in a rule
+  - Don't close the last containers in the file
+  - lowercase everything that can be lowercased (for better gzip compression)
+
+- WIP:
+
+  - Demo : http://xem.github.io/miniMinifier/css
+  - Advanced test file (minified in the demo): https://github.com/xem/miniMinifier/blob/gh-pages/css/test.css
+

@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+/*
+  Remove all CSS comments
+*/
+
+/* Tokenize strings */
+
+*{content:"...";font-family:'...'}
+*{content:"...\"";font-family:'..\''}
+
+/*
+Remove all unnecessary spaces, tabs and line breaks (leading, trailing, and around + > ~ ; : , ( ) { } / * @)
+NB: Keep spaces before : and * in selectors
+NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-type)
+*/
+
+@media ( max-width : 500px ) {
+  #a, .b .c,
+  d ~ e,
+  f + g,
+  .h + .i,
+  .k:nth-child(2n + 1),
+  .l:nth-of-type( - 2n + 1),
+  :hover, *:hover, * :hover,
+  body * {
+    color : red !important;
+    width : calc ( (2vh - 2px + 2cm) / 2 * 4 )
+  }
+}
+
+/* Remove all unnecessary semicolons */
+*:hover, a *:hover, *:active {
+  /* color: blue */;
+  color: red;
+  /* width: 100% */;
+}
+
+/* Remove all unnecessary * in CSS selectors */
+*:hover, a *:hover, *:active, * *:hover {
+  color: red;
+}
+
+/* Keep one space around space-separated values */
+.digits { margin:   0   -2px   0%  0 ; box-shadow: 0   2px  #000 inset ; }
+
+/* Remove all unnecessary "-", "+", "." and "0" in numbers */
+.numbers { 
+  margin: 11.0px 0.11px 0.011px 0.0px;
+  margin: -0 +0 -0px +0px;
+  margin: -0.0 +0.0 -0.0px +0.0px;
+  margin: -0.01 +0.01 -0.01px +0.01px;
+  margin: -.0px +.0px -.0 +.0;
+  margin: 0011.1100px;
+  font: 0.1/1.0 arial;
+}
+
+/* Remove spaces before hrx colors */
+.hex { border-color: #111 #222 #333 #444 }
+
+/* remove units after zero */
+@media screen and (min-resolution : 0dpi) {
+  .zero_unit {
+    width: 0px;
+    width: 0in;
+    width: 0cm;
+    width: 0mm;
+    width: 0em;
+    width: 0rem;
+    width: 0pt;
+    width: 0pc;
+    width: 0ex;
+    width: 0ch;
+    width: 0vw;
+    width: 0vh;
+    width: 0vmin;
+    width: 0vmax;
+    width: 0deg;
+    width: 0rad;
+    width: 0grad;
+    width: 0turn;
+    width: 0%;
+  }
+}
+/* don't remove "%" after "0" in these cases */
+@keyframes zero_percent {
+  0% { background: hsl(111, 0%, 0%); }
+  100% { background:  hsl(222, 0.0%, 1.0%); }
+}
+
+/* Convert rgba colors in rgb or transparent*/
+.rgba { color: rgba(11,22,33,.5); color: rgba(11,22,33,1); background: RGBA(33,22,11,1.0); }
+.hsla { color: hsla(11,22,33,.5); color: hsla(11,22,33,1); background: HSLA(33,22,11,1.0); }
+.transparent { color: rgba ( 0, 0, 0, 0 ) }
+
+/* Convert rgb colors in hexadecimal */
+.rgb { color: rgb(2, 11, 222); background: RGB(111, 22, 3) ; }
+
+/* Minify haxadecimal colors (if possible) */
+.hexadecimal { color: #123456; background: #113355 }
+
+/* Replace hex with color names (if possible) */
+.azure { color: #F0FFFF; color: #f0ffff; }
+.beige { color: #f5f5dc } 
+.bisque { color: #ffe4c4 } 
+.brown { color: #a52a2a } 
+.coral { color: #ff7f50 } 
+.gold { color: #FFD700;  }
+.gray{ color: #808080; }
+.grey { color: #808080; }
+.green { color: #008000 } 
+.indigo { color: #4b0082 } 
+.ivory { color: #fffff0 } 
+.khaki { color: #f0e68c } 
+.linen { color: #faf0e6 } 
+.maroon { color: #800000 } 
+.navy { color: #000080 } 
+.olive { color: #808000 } 
+.orange { color: #FFA500 } 
+.orchid { color: #DA70D6 } 
+.peru { color: #CD853F } 
+.pink { color: #FFC0CB } 
+.plum { color: #DDA0DD } 
+.purple { color: #800080 } 
+.red { color: #FF0000; } 
+.red { color: #F00; } 
+.salmon { color: #FA8072 } 
+.sienna { color: #A0522D } 
+.silver { color: #C0C0C0 } 
+.snow { color: #FFFAFA } 
+.tan { color: #D2B48C } 
+.teal { color: #008080 } 
+.tomato { color: #FF6347 } 
+.violet { color: #EE82EE } 
+.wheat { color: #F5DEB3 }
+
+/* chaining: RGBA => RGB => HEX6 => HEX3 => name */
+.red { color: rgba(255, 0, 0, 1) }
+
+/* Remove empty rules / media queries */
+.empty { /* nothing */ ; /* nothing */ ; }
+
+@media (min-resolution: 100dpi) { }
+
+@media (min-resolution: 100dpi) {
+  .empty { }
+}
+
+/* Replace bold names with numbers */
+.normal { font-weight: normal }
+.bold { font: bold 15px arial }
+
+/* Simplify counters */
+a:nth-child(1) { color: #fff }
+a:nth-of-type(1) { color: #fff }
+a:nth-of-type(even) { color: #fff }
+a:nth-child(even) { color: #fff }
+a:nth-of-type(2n+1) { color: #fff }
+a:nth-child(2n+1) { color: #fff }
+a:nth-of-type(2n-1) { color: #fff }
+a:nth-child(2n-1) { color: #fff }
+
+/* Replace :root with html */
+:root { color: red }
+
+/* Simplify sorthands */
+.shorthands {
+  margin: 1px 2px 3px 4px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 5px 0px 5px;
+  border-width: 0px 5px 10px 5px;
+}
+
+/* Convert some units */
+.deg { transform: rotate(360deg); } 
+.deg { transform: rotate(-720deg); }
+.ms { transition: 15000ms; }
+.ms { transition: 1500ms; }
+.ms { transition: 150ms; }
+.ms { transition: 11150ms; }
+.mm { margin: 100mm -100mm; }
+
+/* Remove URL/font-family quotes, but not content */
+.url { background: url('//test.com/test.png') }
+.url { background: url("https://test.com/test.png") }
+.url { background: url('./test.png') }
+.url { background: url("test.png") }
+.font { font-family: "Arial", "Times New Roman" }
+.content:after { content: "Hi" }
+
+/* More tests */
+h2 {
+ font-size: min(var(--fontSize), 10px);
+}
+@media (width >= 600px) {
+  html {
+    background: lime;
+  }
+}
+
+
+/* Remove trailing containers ( ' " ) } ) */
+@media ( screen ) {
+  @keyframes animation {
+    0% { background: url("image.png") }
+  }
+}
+
+/* Remove trailing spaces */
+    

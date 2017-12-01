@@ -3,8 +3,6 @@
   simple test file
 **/
 
-/* Simple */
-
 /* remove spaces and line breaks around "{" and "}" */
 .braces {
   color:#001
@@ -44,7 +42,7 @@
 /* Preserve space before ":" in selectors */            
 body *::placeholder :first { ;;; color: #012 ; ;  ; }
 
-/* Remove spaces before ":" when it follows ""}"
+/* Remove spaces before ":" when it follows ""}" */
   :first { color: #013 }
 
 /* Remove comments in rules */
@@ -83,109 +81,3 @@ a    .b #c    d { color: #015; }
   width: 0turn;
   width: 0%;
 }
-
-@media screen and (min-resolution : 0dpi) { .example { color: red; } }
-
-/* More tests with zeros */
-.more_zero { border: 0.11em; margin: .0px 0px 0 0.0 0.0px; padding: .0 1.0px 1.0em 1%; }
-
-/* don't remove "%" after "0" in these cases (but still remove ".0") */
-.zero_percent { background: hsl(111, 0%, 0%); color: hsl(222, 0.0%, 1.0%); }
-
-@keyframes zero_percent {
-  0% { background: red }
-}
-
-/* Remove "-" before 0, and "+" before any number */
-.sign { margin: -0 +0 -10px +10px; padding: -0px -0.0px -.0px +0px; }
-
-/* Convert rgb in hexadecimal */
-.rgb { color: rgb(0, 11, 222); background: RGB(111, 22, 3) ; }
-
-/* Minify haxadecimal colors (where applicable) */
-.hexadecimal { color: #123456; background: #113355 }
-
-/* Convert RGB to minified hexadecimal colors (where applicable) */
-.rgb + .hexadecimal { color: rgb(51, 102, 153) }
-
-/* Remove empty rules / media queries / both */
-.empty { /* nothing */ ; /* still nothing */ ; }
-
-@media (min-resolution: 100dpi) { }
-
-@media (min-resolution: 100dpi) {
-  .empty { }
-}
-
-/* For IE < 9: keep a space between closing parenthesis and letters */
-.ie { background: url(bg.jpg) no-repeat }
-
-/* Don't alter strings, like content */
-.content:after { content: "lol;    a ( b ) * {  :  } "}
-.content:after { content: 'lol;    a ( b ) * {  :  } '}
-
-/* Remove URL/font-family quotes */
-.url { background: url("http://test/test/png") }
-.url { background: url('./test.png') }
-.font { font-family: "Arial";}
-
-/* Replace bold names with numbers (normal: 400, bold: 500) */
-.weight { font-weight: normal }
-.weight { font-weight: bold }
-
-/* Replace hex colors with names */
-.azure { color: #F0FFFF; color: #f0ffff; }
-.beige { color: #f5f5bc } 
-.bisque { color: #ffe4c4 } 
-.brown { color: #a52a2a } 
-.coral { color: #ff7f50 } 
-.gold { color: #FFD700;  }
-.gray{ color: #808080; }
-.grey { color: #808080; }
-.green { color: #008000 } 
-.indigo { color: #4b0082 } 
-.ivory { color: #4b0082 } 
-.khaki { color: #f0e68c } 
-.linen { color: #faf0e6 } 
-.maroon { color: #800000 } 
-.navy { color: #000080 } 
-.olive { color: #808000 } 
-.orange { color: #FFA500 } 
-.orchid { color: #DA70D6 } 
-.peru { color: #CD853F } 
-.pink { color: #FFC0CB } 
-.plum { color: #DDA0DD } 
-.purple { color: #800080 } 
-.red { color: #FF0000; } 
-.red { color: #F00; } 
-.salmon { color: #FA8072 } 
-.sienna { color: #A0522D } 
-.silver { color: #C0C0C0 } 
-.snow { color: #FFFAFA } 
-.tan { color: #D2B48C } 
-.teal { color: #008080 } 
-.tomato { color: #FF6347 } 
-.violet { color: #EE82EE } 
-.wheat { color: #F5DEB3 }
-
-/* RGB => HEX6 => HEX3 => name */
-.red { color: rgb(255, 0, 0) }
-
-/* Remove space before ":" in rules only (not selectors) */
-.colon :after { color    :   #999 }
-
-/* Keep space after ")" for old IE except before ";" or "}" */
-.ie { background  :  url(  ie.png  )  #999  }
-.ie { background  :  url(  ie.png  )  no-repeat  }
-.ie { background  :  url(  ie.png  )  ;  color: #999  }
-.ie { background  :  url(  ie.png  )  ;  }
-.ie { background  :  url(  ie.png  ) }
-
-/* More spaces to remove */
-@media screen and (monochrome) and not (min-aspect-ratio : 1 / 1) { .example { color: red; } }
-
-/* More spaces not to remove (atound "+" and "-" in calc) */
-.calc { width: calc((1px + 1px - 10% + 2vmax) / 2) }
-
-/* remove trailing spaces */
-  
