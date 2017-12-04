@@ -1,4 +1,4 @@
-﻿<textarea id=p cols=100 rows=20>
+﻿<textarea id=p spellcheck="false">
 
 @charset "UTF-8";
 
@@ -77,18 +77,20 @@ NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-typ
     width: 0vh;
     width: 0vmin;
     width: 0vmax;
-    width: 0deg;
-    width: 0rad;
-    width: 0grad;
-    width: 0turn;
     width: 0%;
+    transform: rotate(0deg);
+    transform: rotate(0rad);
+    transform: rotate(0grad);
+    transform: rotate(0turn);
   }
 }
+
 /* don't remove "%" after "0" in these cases */
 @keyframes zero_percent {
   0% { background: hsl(111, 0%, 0%); }
   100% { background:  hsl(222, 0.0%, 1.0%); }
 }
+
 
 /* Convert rgba colors in rgb or transparent*/
 .rgba { color: rgba(11,22,33,.5); color: rgba(11,22,33,1); background: RGBA(33,22,11,1.0); }
@@ -174,7 +176,7 @@ a:nth-child(2n-1) { color: #fff }
 }
 
 /* Convert some units */
-.deg { transform: rotate(360deg); }  // buggy?
+.deg { transform: rotate(360deg); }
 .deg { transform: rotate(-720deg); }
 .ms { transition: 15000ms; }
 .ms { transition: 1500ms; }
@@ -216,8 +218,8 @@ h2 {
 .deg { transform: rotate(-360deg); }
 
          
-</textarea>
 
+</textarea>
 <style>
 
 * { background: #222; color: #fff }
@@ -238,7 +240,7 @@ textarea {
  height: 100vh;
  font-family: 'Fira Code', monospace;
  font-size: 14pt;
- line-height: 1.75;
+ line-height: 1.2;
  color: #777;
 }
 

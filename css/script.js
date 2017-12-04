@@ -60,7 +60,7 @@ code
 .replace(/-0(\D)/g, "0$1")
 
 // Remove units after zero 
-.replace(/([ :*\/])0([a-z]+)/g,"$10")
+.replace(/([ :*\/(])0([a-z]+)/g,"$10")
 
 // Remove "+", "-" and "." in "-.0" and "+.0" and ".0"
 .replace(/(\D)[-+.]?\.?0(?=\D)/g,"$10")
@@ -163,8 +163,11 @@ code
 // Remove "https?:" and quotes in urls
 .replace(/url\(('|")?(https?:)?(.*?)('|")?\)/g, "url($3)")
 
-// avoid repetitions
-.replace(/([^{:;]*:[^;}]*)((;\1)*)/, "$1")
+// Avoid repetitions of properties
+.replace(/([^{}:;]*:[^{}:;]*)(;(\1))*/g, "$1")
+
+// Avoid repetitions of rules?
+.replace()
 
 // Remove trailing containers
 .replace(/["']?\)?}?}?}?$/, "")
