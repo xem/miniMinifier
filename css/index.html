@@ -12,7 +12,7 @@
 *{content:"...\"";font-family:'..\''}
 
 /*
-Remove all unnecessary spaces, tabs and line breaks (leading, trailing, and around + > ~ ; : , ( ) { } / * @)
+Remove all unnecessary spaces, tabs and line breaks (leading, trailing, and around + > ~ ; : , ( ) { } / * @ <= >=)
 NB: Keep spaces before : and * in selectors
 NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-type)
 */
@@ -28,6 +28,12 @@ NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-typ
   body * {
     color : red !important;
     width : calc ( (2vh - 2px + 2cm) / 2 * 4 )
+  }
+}
+
+@media (width >= 600px) {
+  h2 {
+    font-size: min( var( --fontSize ), 10px);
   }
 }
 
@@ -192,16 +198,15 @@ a:nth-child(2n-1) { color: #fff }
 .font { font-family: "Arial", "Times New Roman" }
 .content:after { content: "Hi" }
 
-/* More tests */
-h2 {
- font-size: min(var(--fontSize), 10px);
-}
-@media (width >= 600px) {
-  html {
-    background: lime;
-  }
-}
+/* Lowercase everything but strings and urls */
+#MAIN H1.TITLE { COLOR: RGBA(1,2,3,.5); }
 
+/* Remove repeated properties */
+body { color: blue; color: blue }
+
+/* Remove repeated rules */
+* { color: red }
+* { color: red }
 
 /* Remove trailing containers ( ' " ) } ) */
 @media ( screen ) {
@@ -210,12 +215,8 @@ h2 {
   }
 }
 
+
 /* Remove trailing spaces */
-
-
-         
-.deg { transform: rotate(360deg); }
-.deg { transform: rotate(-360deg); }
 
          
 

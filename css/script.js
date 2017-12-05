@@ -167,7 +167,7 @@ code
 .replace(/([^{}:;]*:[^{}:;]*)(;(\1))*/g, "$1")
 
 // Avoid repetitions of rules?
-.replace()
+.replace(/([^{]*{[^}]*})(\1)*/g, "$1")
 
 // Remove trailing containers
 .replace(/["']?\)?}?}?}?$/, "")
