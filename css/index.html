@@ -1,4 +1,7 @@
 ﻿<textarea id=p spellcheck="false">
+.numbers { 
+  margin: -0.01 +0.01 -0.01px +0.01px;
+}
 
 @charset "UTF-8";
 
@@ -7,9 +10,8 @@
 */
 
 /* Tokenize strings */
-
-*{content:"...";font-family:'...'}
-*{content:"...\"";font-family:'..\''}
+*:before{content:"...";content:'...'}
+*:after{content:"...\"";content:'..\''}
 
 /*
 Remove all unnecessary spaces, tabs and line breaks (leading, trailing, and around + > ~ ; : , ( ) { } / * @ <= >=)
@@ -57,13 +59,13 @@ NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-typ
   margin: 11.0px 0.11px 0.011px 0.0px;
   margin: -0 +0 -0px +0px;
   margin: -0.0 +0.0 -0.0px +0.0px;
-  margin: -0.01 +0.01 -0.01px +0.01px;
+  margin: -0.01 +0.01 -0.01px +0.01px; /* buggy! */
   margin: -.0px +.0px -.0 +.0;
   margin: 0011.1100px;
   font: 0.1/1.0 arial;
 }
 
-/* Remove spaces before hrx colors */
+/* Remove spaces before hex colors */
 .hex { border-color: #111 #222 #333 #444 }
 
 /* remove units after zero */
@@ -96,7 +98,6 @@ NB: Keep spaces around + and - in calc(...) (but not in nth-child and nth-of-typ
   0% { background: hsl(111, 0%, 0%); }
   100% { background:  hsl(222, 0.0%, 1.0%); }
 }
-
 
 /* Convert rgba colors in rgb or transparent*/
 .rgba { color: rgba(11,22,33,.5); color: rgba(11,22,33,1); background: RGBA(33,22,11,1.0); }
@@ -198,11 +199,14 @@ a:nth-child(2n-1) { color: #fff }
 .font { font-family: "Arial", "Times New Roman" }
 .content:after { content: "Hi" }
 
-/* Lowercase everything but strings and urls */
-#MAIN H1.TITLE { COLOR: RGBA(1,2,3,.5); }
+/* Lowercase everything but strings, urls and case-insensitive attribute selectors */
+#MAIN H1.TITLE, [class=FOO], [class=FOO i] { COLOR: RGBA(1,2,3,.5); }
+
+/* Remove repeated selectors */
+h1, h1, h1 * { color: green }
 
 /* Remove repeated properties */
-body { color: blue; color: blue }
+body { color: blue; color: blue; color: bluegreen; }
 
 /* Remove repeated rules */
 * { color: red }

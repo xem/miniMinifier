@@ -1,38 +1,63 @@
 var code = p.value,
   
-string = 0,
-string_back = 0,
+string = url = attr = 0,
+string_back = url_back = attr_back = 0,
 strings = [];
+urls = [];
+attrs = [];
 
 p.innerHTML =
 
 code
-.replace(/@charset (".*?"|'.*?');/g, "") // remove charset rule
-.replace(/\/\*[^]*?\*\//g,'') // remove comments /* ... * /
-.replace(/\s+/g,' ') // compress spaces/tabs/line breaks as 1 space
-.replace(/url\(.*?\)|"(\\"|.)*?"|'(\\'|.)*?'/g, z=>{strings[string] = z; return `&&${string++}&&`}) // tokenize strings and urls to keep them unaltered
-.replace(/ *([~;,(){}\/@!<>=]+) */g,'$1') // remove spaces,tabs,line breaks around ~ ; , ( ) { } / @ ! < > =
 
+// Remove charset rule
+.replace(/@charset (".*?"|'.*?');/g, "") 
 
-.toLowerCase()
+// Remove comments /* ... * /
+.replace(/\/\*[^]*?\*\//g,'') 
 
-.replace(/(^|\{|\})@[^{}]+?(?=\{)/g, a => { // Isolate at-rules
+// Compress spaces/tabs/line breaks as 1 space
+.replace(/\s+/g,' ')
+
+// Tokenize urls 
+.replace(/url\(.*?\)/g, z=>{urls[url] = z; return `&&&${url++}&&&`}) 
+
+// Tokenize strings to keep them unaltered
+.replace(/"(\\"|.)*?"|'(\\'|.)*?'/g, z=>{strings[string] = z; return `&&${string++}&&`})
+
+// Remove spaces,tabs,line breaks around ~ ; , ( ) { } / @ ! < > = <= >= ' "
+.replace(/ *([~;,(){}\/@!<>='"]+) */g,'$1') 
+
+// Isolate at-rules
+.replace(/(^|\{|\})@[^{}]+?(?=\{)/g, a => { 
   return a
   .replace(/ ?([*:]) ?/g,'$1') // remove spaces around : in at-rules
 })
 
-.replace(/(^|\{|\})[^{}]+?(?=\{)/g, a => { // Isolate selectors
+// Isolate selectors
+.replace(/(^|\{|\})[^{}]+?(?=\{)/g, a => { 
   return a
   .replace(/ ?([+-]) ?/g,'$1') // remove spaces around + and -
   .replace(/(^|,|}) ([*:])/g,'$1$2') // keep spaces before * and :, except if they follow ^ or , or }
+  .replace(/([^{},]*)(,(\1)(?=[,{]))*/g, "$1") // Avoid repetitions of selectors
 })
 
-.replace(/{[^{}]*}/g, a => { // Isolate rules
+// Isolate rules
+.replace(/{[^{}]*}/g, a => { 
   return a
   .replace(/ ?([*:]) ?/g,'$1') // remove spaces around * and : 
   .replace(/ #/g, "#") // Remove spaces before hex colors
 
 })
+
+// Tokenize case insensitive attr selectors
+.replace(/\[[^\]]* i\]/g, z=>{attrs[attr] = z; return `&&&&${attr++}&&&&`})
+
+// Lowercase all the rest
+.toLowerCase()
+
+// Put back tokenized attr selectors
+.replace(/&&&&\d+&&&&/g, z=>attrs[attr_back++])
 
 // Remove spaces between ":" and "rgb()"
 .replace(/: rgb/g, ":rgb")
@@ -145,7 +170,6 @@ code
 .replace(/((margin|padding|border-width|border-radius):)([^ ;}]+?) ([^ ;}]+?) ([^ ;}]+?) \4/g, "$1$3 $4 $5")
 
 // Convert units (except: 3pt = 4px ; 25.4mm  = 96px = 1in ; 16px = 1pc)
-
 .replace(/([: {(-])360deg/g,"$11turn") // 360deg = 1turn
 .replace(/([: {(-])720deg/g,"$12turn") // 720deg = 2turn
 .replace(/([: {(-])(\d+)000ms/g,"$1$2s") // 1000ms = 1s
@@ -153,25 +177,27 @@ code
 .replace(/([: {(-])(\d*)(\d\d)0ms/g,"$1$2.$3s") // XY0ms = .XYs
 .replace(/([: {(-])(\d+)0mm/g,"$1$2cm") // 10mm = 1 cm
 
-// Put back tokenized urls and strings
-.replace(/&&\d+&&/g, z=>strings[string_back++])
-
-// Remove quotes around a-zA-Z names in font / font-family /... (but not content!)
-// https://mathiasbynens.be/notes/unquoted-font-family
-.replace(/(content:[^;}]*)|'([a-zA-Z-_ ]+)'|"([a-zA-Z-_ ]+)"/g, "$1$2$3")
+// Put back tokenized urls
+.replace(/&&&\d+&&&/g, z=>urls[url_back++])
 
 // Remove "https?:" and quotes in urls
 .replace(/url\(('|")?(https?:)?(.*?)('|")?\)/g, "url($3)")
 
-// Avoid repetitions of properties
-.replace(/([^{}:;]*:[^{}:;]*)(;(\1))*/g, "$1")
+// Put back tokenized strings
+// TODO? => if a string is between quotes, and contains an escaped quote, and no double quote, surround it with double quotes and unescape rhe quote (and vice versa)
+.replace(/&&\d+&&/g, z=>strings[string_back++])
 
-// Avoid repetitions of rules?
+// Remove quotes around [a-zA-Z]* names in font / font-family /... (but not content!) (may affect strings)
+.replace(/(content:[^;}]*)|'([a-zA-Z-_ ]+)'|"([a-zA-Z-_ ]+)"/g, "$1$2$3")
+
+// Avoid repetitions of properties
+.replace(/([^{}:;]*:[^{}:;]*)(;(\1)(?=[;}]))*/g, "$1")
+
+// Avoid repetitions of rules
 .replace(/([^{]*{[^}]*})(\1)*/g, "$1")
 
 // Remove trailing containers
 .replace(/["']?\)?}?}?}?$/, "")
 
-
 // Debug
-//.replace(/}+/g, "}\n");
+.replace(/}+/g, "}\n");

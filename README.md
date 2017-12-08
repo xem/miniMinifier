@@ -95,8 +95,9 @@ Advanced CSS Minifier (1kb?):
   - Remove quotes around identifiers in font / font-family / etc (but not in content!)
   - Remove "https?:" and quotes in urls
   - Avoid repeating identical css properties in a rule
-  - Lowercase everything but strings and urls (gzip optimization)
+  - Lowercase everything but strings, urls and case-insensitive attr selectors (gzip optimization)
   - Remove repeated properties
+  - Remove repeated selectors
   - Remove repeated rules
   - Don't close the last containers in the file
 
