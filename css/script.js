@@ -165,9 +165,9 @@ code
 .replace(/:root/g, "html")
 
 // Rewrite margin/padding/border-width/border-radius shorthands with less attributes
-.replace(/((margin|padding|border-width|border-radius):)([^ ;}]+?) \3 \3 \3/g, "$1$3")
-.replace(/((margin|padding|border-width|border-radius):)([^^ ;}]+?) ([^ ;}]+?) \3 \4/g, "$1$3 $4")
-.replace(/((margin|padding|border-width|border-radius):)([^ ;}]+?) ([^ ;}]+?) ([^ ;}]+?) \4/g, "$1$3 $4 $5")
+.replace(/((margin|padding|border-width|border-radius):)([^ ;}]+?) \3 \3 \3([;}])/g, "$1$3$4")
+.replace(/((margin|padding|border-width|border-radius):)([^^ ;}]+?) ([^ ;}]+?) \3 \4([;}])/g, "$1$3 $4$5")
+.replace(/((margin|padding|border-width|border-radius):)([^ ;}]+?) ([^ ;}]+?) ([^ ;}]+?) \4([;}])/g, "$1$3 $4 $5$6")
 
 // Convert units (except: 3pt = 4px ; 25.4mm  = 96px = 1in ; 16px = 1pc)
 .replace(/([: {(-])360deg/g,"$11turn") // 360deg = 1turn
@@ -200,4 +200,4 @@ code
 .replace(/["']?\)?}?}?}?$/, "")
 
 // Debug
-.replace(/}+/g, "}\n");
+//.replace(/}+/g, "}\n");
