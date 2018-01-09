@@ -103,6 +103,6 @@ Advanced CSS Minifier (1kb?):
 
 - WIP:
 
-  - Demo : http://xem.github.io/miniMinifier/css
+  - Demo : http://xem.github.io/miniMinifier/css/index.html
   - Advanced test file (minified in the demo): https://github.com/xem/miniMinifier/blob/gh-pages/css/test.css
 
